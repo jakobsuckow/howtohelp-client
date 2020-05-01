@@ -3,7 +3,7 @@ import ReactMapGL from "react-map-gl"
 import dotenv from "dotenv"
 dotenv.config()
 
-import "./module.styles.scss"
+
 
 export default function BigMap() {
   const [viewport, setViewport] = useState({
