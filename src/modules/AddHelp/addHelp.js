@@ -1,9 +1,13 @@
 import React from "react"
+import Form from "../shared/form/form"
+import { Input } from "@material-ui/core"
 
 const AddHelp = () => {
   return (
     <div>
-      <h1>hi</h1>
+      <Form>
+        <Input label="name" />
+      </Form>
     </div>
   )
 }

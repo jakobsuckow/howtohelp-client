@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react"
 
-import AppRoot from './shared/app/AppRoot';
+import AppRoot from "./shared/app/AppRoot"
 
-const Root = () => <AppRoot />;
+const Root = () => <AppRoot />
 
-export default Root;
+export default Root
