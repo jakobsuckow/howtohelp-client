@@ -7,6 +7,7 @@ import MenuIcon from "@material-ui/icons/Menu"
 import AccountCircle from "@material-ui/icons/AccountCircle"
 import MenuItem from "@material-ui/core/MenuItem"
 import Menu from "@material-ui/core/Menu"
+import "./module.styles.scss"
 
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true)
@@ -27,7 +28,7 @@ export default function MenuAppBar() {
 
   return (
     <div className="">
-      <AppBar position="fixed" color="transparent">
+      <AppBar position="fixed" color="transparent" boxShadow={0}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -41,8 +42,9 @@ export default function MenuAppBar() {
             howtohelp
           </Typography>
           {auth && (
-            <div className="right-4">
+            <>
               <IconButton
+                className="float-right"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
@@ -66,10 +68,11 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>Login</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>About</MenuItem>
               </Menu>
-            </div>
+            </>
           )}
         </Toolbar>
       </AppBar>

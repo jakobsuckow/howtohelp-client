@@ -6,7 +6,7 @@ import TopBar from "../shared/topbar/topbar"
 const Home = () => {
   return (
     <div>
-      <TopBar />
+      <TopBar/>
       <FloatingButton />
       <BigMap />
     </div>
