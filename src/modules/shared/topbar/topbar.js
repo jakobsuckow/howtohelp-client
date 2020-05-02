@@ -7,9 +7,16 @@ import MenuIcon from "@material-ui/icons/Menu"
 import AccountCircle from "@material-ui/icons/AccountCircle"
 import MenuItem from "@material-ui/core/MenuItem"
 import Menu from "@material-ui/core/Menu"
-import "./module.styles.scss"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles({
+  appBar: {
+    boxShadow: "none",
+  },
+})
 
 export default function MenuAppBar() {
+  const classes = useStyles()
   const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -28,7 +35,7 @@ export default function MenuAppBar() {
 
   return (
     <div className="">
-      <AppBar position="fixed" color="transparent" boxShadow={0}>
+      <AppBar position="fixed" color="transparent" className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"

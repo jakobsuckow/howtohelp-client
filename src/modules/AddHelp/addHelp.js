@@ -1,13 +1,26 @@
 import React from "react"
 import Form from "../shared/form/form"
-import { Input } from "@material-ui/core"
+import Container from "@material-ui/core/Container"
+import { Input, Button } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+
+
+const useStyles = makeStyles({
+  root: {},
+})
 
 const AddHelp = () => {
+  const classes = useStyles()
   return (
     <div>
-      <Form>
-        <Input label="name" />
-      </Form>
+      <Container maxWidth="md">
+        <Form>
+          <Input label="name" />
+          <Input label="name" />
+          <Input label="name" />
+          <Button>Submit</Button>
+        </Form>
+      </Container>
     </div>
   )
 }

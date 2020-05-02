@@ -5,8 +5,25 @@ import { Link } from "react-router-dom"
 import Popper from "@material-ui/core/Popper"
 import Fade from "@material-ui/core/Fade"
 import Paper from "@material-ui/core/Paper"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles({
+  popup: {
+    marginBottom: "40px",
+  },
+  fab: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    zIndex: 10,
+    padding: "10px",
+    background: "#DA5E50",
+    color: "white",
+  },
+})
 
 export default function FloatingButton() {
+  const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [open, setOpen] = React.useState(false)
   const [placement, setPlacement] = React.useState()
@@ -16,19 +33,20 @@ export default function FloatingButton() {
     setOpen((prev) => placement !== newPlacement || !prev)
     setPlacement(newPlacement)
   }
+
   return (
     <>
       <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
-            <Paper elevation={3}>
-              <div className="mb-10">
-                <Link className="px-2" to="/add-help">
+            <Paper elevation={3} className={classes.popup}>
+              <div className="">
+                <Link className="" to="/add-help">
                   Request Help
                 </Link>
               </div>
               <div>
-                <Link className="px-2" to="/add-help">
+                <Link className="" to="/add-help">
                   Offer Help
                 </Link>
               </div>
@@ -40,7 +58,7 @@ export default function FloatingButton() {
         className="absolute bottom-0 right-0 z-10 p-4"
         onClick={handleClick("top-end")}
       >
-        <Fab color="primary" aria-label="add">
+        <Fab color="primary" aria-label="add" className={classes.fab}>
           <AddIcon />
         </Fab>
       </div>
