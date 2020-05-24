@@ -18,6 +18,9 @@ const useStyles = makeStyles({
     padding: "10px",
     color: "white",
   },
+  addIcon: {
+    transform: `rotate(45deg)`,
+  },
 })
 
 export default function FloatingButton() {
@@ -44,7 +47,7 @@ export default function FloatingButton() {
         className={classes.fab}
         onClick={toggleOpen}
       >
-        <AddIcon />
+        <AddIcon className={classes.addIcon} />
       </Fab>
     </>
   )
