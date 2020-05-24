@@ -18,9 +18,7 @@ const useStyles = makeStyles({
     padding: "10px",
     color: "white",
   },
-  addIcon: {
-    transform: `rotate(45deg)`,
-  },
+  addIcon: {},
 })
 
 export default function FloatingButton() {
@@ -46,6 +44,7 @@ export default function FloatingButton() {
         aria-label="add"
         className={classes.fab}
         onClick={toggleOpen}
+        style={{ transform: `${open ? `rotate(45deg)` : ``}` }}
       >
         <AddIcon className={classes.addIcon} />
       </Fab>

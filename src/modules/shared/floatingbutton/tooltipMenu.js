@@ -4,8 +4,7 @@ import LocalAtmOutlinedIcon from "@material-ui/icons/LocalAtmOutlined"
 import AccessibilityNewOutlinedIcon from "@material-ui/icons/AccessibilityNewOutlined"
 import EditLocationOutlinedIcon from "@material-ui/icons/EditLocationOutlined"
 import { Link } from "react-router-dom"
-import PeopleSVG from "../icons/people"
-import { Fab, Typography } from "@material-ui/core"
+import { Fab, Typography, Box, Grid } from "@material-ui/core"
 
 const ToolTipMenu = (props) => {
   const { open } = props
@@ -30,31 +29,56 @@ const ToolTipMenu = (props) => {
     <div className={classes.root}>
       <ul>
         <li className={classes.menuItem}>
-          <Link to="/add-help">
-            <Typography className={classes.buttonHeading}>Finance</Typography>
-            <Fab color="primary" aria-label="add" className={classes.fab}>
-              <LocalAtmOutlinedIcon />
-            </Fab>
-          </Link>
+          <Grid container spacing={3} >
+            <Grid item xs={6}>
+              <Link to="/add-help">
+                <Typography className={classes.buttonHeading}>
+                  Finance
+                </Typography>
+              </Link>
+            </Grid>
+            <Grid item xs={6}>
+              <Link to="/add-help">
+                <Fab color="primary" aria-label="add" className={classes.fab}>
+                  <LocalAtmOutlinedIcon />
+                </Fab>
+              </Link>
+            </Grid>
+          </Grid>
         </li>
         <li className={classes.menuItem}>
-          <Link to="/add-help">
-            <Typography className={classes.buttonHeading}>Help</Typography>
-
-            <Fab color="primary" aria-label="add" className={classes.fab}>
-              <AccessibilityNewOutlinedIcon />
-            </Fab>
-          </Link>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Link to="/add-help">
+                <Typography className={classes.buttonHeading}>Help</Typography>
+              </Link>
+            </Grid>
+            <Grid item xs={6}>
+              <Link to="/add-help">
+                <Fab color="primary" aria-label="add" className={classes.fab}>
+                  <AccessibilityNewOutlinedIcon />
+                </Fab>
+              </Link>
+            </Grid>
+          </Grid>
         </li>
         <li className={classes.menuItem}>
-          <Link to="/add-help">
-            <Typography className={classes.buttonHeading}>
-              I need Help
-            </Typography>
-            <Fab color="primary" className={classes.fab}>
-              <EditLocationOutlinedIcon />
-            </Fab>
-          </Link>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Link to="/add-help">
+                <Typography className={classes.buttonHeading}>
+                  I need Help
+                </Typography>
+              </Link>
+            </Grid>
+            <Grid item xs={6}>
+              <Link to="/add-help">
+                <Fab color="primary" className={classes.fab}>
+                  <EditLocationOutlinedIcon />
+                </Fab>
+              </Link>
+            </Grid>
+          </Grid>
         </li>
       </ul>
     </div>
