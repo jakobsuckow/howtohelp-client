@@ -31,15 +31,14 @@ export const Pin = (props) => {
         anchor="top"
         dynamicPosition={false}
       >
-        <button
-          className="marker-btn"
+        <span
           onClick={(e) => {
             e.preventDefault()
             setSelectedItem(id)
           }}
         >
           <Circle />
-        </button>
+        </span>
       </Marker>
       {selectedItem ? (
         <Popup

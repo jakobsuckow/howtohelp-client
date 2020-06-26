@@ -3,6 +3,7 @@ import BigMap from "../shared/bigmap/bigmap"
 import FloatingButton from "../shared/floatingbutton/floatingbutton"
 import TopBar from "../shared/topbar/topbar"
 import { makeStyles } from "@material-ui/core/styles"
+import Navbar from "../shared/navbar/navbar"
 
 const useStyles = makeStyles({
   root: {
@@ -24,7 +25,7 @@ const Home = () => {
 
   return (
     <div className={classes.root}>
-      <TopBar />
+      <Navbar />
       <FloatingButton />
       <BigMap lat={coords.lat} long={coords.long} />
     </div>
