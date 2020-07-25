@@ -1,10 +1,7 @@
 import React from "react"
 import Fab from "@material-ui/core/Fab"
 import AddIcon from "@material-ui/icons/Add"
-import ClickAwayListener from "@material-ui/core/ClickAwayListener"
-
 import { makeStyles } from "@material-ui/core/styles"
-import ToolTipMenu from "./tooltipMenu"
 
 const useStyles = makeStyles({
   popup: {
@@ -18,10 +15,9 @@ const useStyles = makeStyles({
     padding: "10px",
     color: "white",
   },
-  addIcon: {},
 })
 
-export default function FloatingButton() {
+const FloatingButton = () => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
 
@@ -31,14 +27,6 @@ export default function FloatingButton() {
 
   return (
     <>
-      <ClickAwayListener
-        onClickAway={() => {
-          setOpen(false)
-        }}
-      >
-        <ToolTipMenu open={open} />
-      </ClickAwayListener>
-
       <Fab
         color="primary"
         aria-label="add"
@@ -46,8 +34,10 @@ export default function FloatingButton() {
         onClick={toggleOpen}
         style={{ transform: `${open ? `rotate(45deg)` : ``}` }}
       >
-        <AddIcon className={classes.addIcon} />
+        <AddIcon />
       </Fab>
     </>
   )
 }
+
+export default FloatingButton

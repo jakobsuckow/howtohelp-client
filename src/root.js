@@ -1,6 +1,5 @@
 import React from "react"
-
-import AppRoot from "./shared/app/AppRoot"
+import AppRoot from "./modules/shared/app/appRoot"
 
 const Root = () => <AppRoot />
 
