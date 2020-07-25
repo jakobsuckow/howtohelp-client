@@ -1,73 +1,49 @@
 import { createMuiTheme } from "@material-ui/core/styles"
+import createSpacing from "@material-ui/core/styles/createSpacing"
+import createBreakpoints from "@material-ui/core/styles/createBreakpoints"
 
 export const colors = {
-  BLACK: "#000",
-  PURPLE: "#6705fa",
-  GREEN: "048543",
+  white: `#ffffff`,
 }
 
+const spacing = createSpacing()
+const breakpoints = createBreakpoints({})
 const theme = createMuiTheme({
   palette: {
     common: colors,
-    primary: {
-      main: colors.PURPLE,
-    },
-    green: {
-      main: colors.GREEN,
-    },
   },
-  typography: {
-    fontFamily: "Oswald",
-    fontSize: 16,
-    fontWeightLight: 300,
-    fontWeightRegular: 400,
-    fontWeightBold: 600,
-    lineHeight: 1.5,
-
-    h1: {
-      fontSize: 39,
-      fontWeight: 600,
-      lineHeight: "44px",
-      color: colors.BLACK,
+  overrides: {
+    MuiButton: {
+      root: {
+        width: "100%",
+        paddingTop: spacing(1.5),
+        paddingBottom: spacing(1.5),
+        fontSize: 16,
+        [breakpoints.up("sm")]: {
+          fontSize: 18,
+        },
+        fontWeight: 400,
+        lineHeight: 1,
+        textTransform: "none",
+        letterSpacing: 2,
+        textAlign: "center",
+      },
     },
-    h2: {
-      fontSize: 33,
-      fontWeight: 600,
-      lineHeight: "40px",
-      color: colors.BLACK,
+    MuiCssBaseline: {
+      "@global": {
+        html: {
+          height: "100%",
+        },
+        body: {
+          height: "100%",
+          fontSize: 16,
+          backgroundColor: colors.white,
+        },
+        "#root": {
+          height: "100%",
+        },
+      },
     },
-    h3: {
-      fontSize: 27,
-      fontWeight: 600,
-      lineHeight: "32px",
-      color: colors.BLACK,
-    },
-    h4: {
-      fontSize: 23,
-      fontWeight: "bold",
-      lineHeight: 1.3,
-      color: colors.BLACK,
-    },
-    h5: {
-      fontSize: 23,
-      fontWeight: "bold",
-      lineHeight: 1.3,
-      color: colors.BLACK,
-    },
-    h6: {
-      fontSize: 23,
-      fontWeight: "bold",
-      lineHeight: 1.3,
-      color: colors.BLACK,
-    },
-    body1: {
-      color: colors.BLACK,
-      fontSize: 12,
-      lineHeight: "18px",
-    },
-  },
-  status: {
-    danger: "orange",
   },
 })
 
