@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Home from "../../home/home"
 import Registration from "../../registration/registration"
+import Home from "../../home/home"
 
 const AppRouter = () => (
   <Router>
