@@ -1,6 +1,10 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import mapboxgl from "mapbox-gl"
 import { makeStyles } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import clsx from "clsx"
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer"
+import Button from "@material-ui/core/Button"
 import "./map.scss"
 import "mapbox-gl/dist/mapbox-gl.css"
 
@@ -16,11 +20,53 @@ const useStyles = makeStyles(() => ({
     width: `100%`,
     height: `100%`,
   },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: "auto",
+  },
 }))
 
 function Map() {
+  const matches = useMediaQuery("(min-width:600px)")
+  const isMobile = () => {
+    if (matches) {
+      return `left`
+    } else {
+      return `bottom`
+    }
+  }
   const classes = useStyles()
   const mapboxElRef = useRef(null)
+  const [state, setState] = useState({
+    left: true,
+    bottom: false,
+  })
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return
+    }
+
+    setState({ ...state, [anchor]: open })
+  }
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === "top" || anchor === "bottom",
+      })}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      hi
+    </div>
+  )
 
   const data = [
     {
@@ -64,7 +110,7 @@ function Map() {
       })
     })
     map.on("click", "circles", (e) => {
-      console.log(`hi`)
+      toggleDrawer(isMobile(), true)
     })
     map.on("mouseenter", "circles", () => {
       map.getCanvas().style.cursor = "pointer"
@@ -77,6 +123,14 @@ function Map() {
 
   return (
     <div className="App">
+      <SwipeableDrawer
+        anchor={isMobile()}
+        open={state[isMobile()]}
+        onClose={toggleDrawer(isMobile(), false)}
+        onOpen={toggleDrawer(isMobile(), true)}
+      >
+        {list(isMobile())}
+      </SwipeableDrawer>
       <div className={classes.mapContainer}>
         <div className={classes.mapBox} ref={mapboxElRef} />
       </div>
