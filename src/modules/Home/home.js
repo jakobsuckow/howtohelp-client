@@ -1,14 +1,16 @@
 import React from "react"
 import Map from "../../components/map/map"
-import FloatingButton from "../../components/button/floatingButton"
+import SpeedDials from "../../components/button/speedDials"
+import Drawer from "../../components/drawer/drawer"
 
-const home = () => {
+const Home = () => {
   return (
     <>
-      <FloatingButton />
+      <Drawer />
+      <SpeedDials />
       <Map />
     </>
   )
 }
 
-export default home
+export default Home

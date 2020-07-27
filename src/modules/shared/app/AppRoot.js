@@ -1,5 +1,5 @@
 import React from "react"
-import AppRouter from "./appRouter"
+import AppRouter from "./AppRouter"
 import AlertProvider from "../../../components/alert/alertProvider"
 
 const AppRoot = () => (

@@ -63,6 +63,12 @@ function Map() {
         },
       })
     })
+    map.on("click", "circles", (e) => {
+      console.log(`hi`)
+    })
+    map.on("mouseenter", "circles", () => {
+      map.getCanvas().style.cursor = "pointer"
+    })
     const popup = new mapboxgl.Popup({
       closeButton: false,
       closeOnClick: false,
