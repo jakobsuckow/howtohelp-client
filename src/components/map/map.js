@@ -59,7 +59,7 @@ function Map() {
           "circle-opacity": 0.75,
           "circle-stroke-width": 1,
           "circle-radius": 4,
-          "circle-color": "#FFEB3B",
+          "circle-color": "#000",
         },
       })
     })
