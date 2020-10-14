@@ -8,6 +8,7 @@ import SaveIcon from "@material-ui/icons/Save"
 import PrintIcon from "@material-ui/icons/Print"
 import ShareIcon from "@material-ui/icons/Share"
 import FavoriteIcon from "@material-ui/icons/Favorite"
+import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   speedDial: {
@@ -29,6 +30,7 @@ const actions = [
 ]
 
 const SpeedDials = () => {
+  const history = useHistory()
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
 
@@ -55,7 +57,7 @@ const SpeedDials = () => {
           key={action.name}
           icon={action.icon}
           tooltipTitle={action.name}
-          onClick={handleClose}
+          onClick={() => history.push("/registration")}
         />
       ))}
     </SpeedDial>
