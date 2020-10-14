@@ -29,6 +29,12 @@ const theme = createMuiTheme({
         textAlign: "center",
       },
     },
+    MuiSpeedDialAction: {
+      staticTooltipLabel: {
+        fontSize: 16,
+        whiteSpace: "nowrap",
+      },
+    },
     MuiCssBaseline: {
       "@global": {
         html: {

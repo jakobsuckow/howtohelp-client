@@ -60,8 +60,8 @@ const SpeedDials = () => {
         <SpeedDialAction
           key={action.name}
           icon={action.icon}
-          TooltipClasses={classes}
           tooltipTitle={action.name}
+          tooltipOpen
           className={classes.actionIcon}
           onClick={() => history.push("/registration")}
         />
