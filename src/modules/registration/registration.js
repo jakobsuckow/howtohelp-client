@@ -20,9 +20,7 @@ const Registration = () => {
 
   const { handleSubmit } = methods
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+
 
   return (
     <Layout>
