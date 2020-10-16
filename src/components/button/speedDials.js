@@ -14,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
-  speedDialIcon: {
-    height: 16,
-  },
   actionIcon: {
     background: "none",
     boxShadow: "none",
@@ -25,18 +22,7 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "none",
     },
   },
-  tooltip: {
-    fontSize: 16,
-  },
 }))
-
-const actions = [
-  { icon: <HelpIconSvg />, name: "I need help" },
-  {
-    icon: <HeartIconSvg />,
-    name: "I want to help",
-  },
-]
 
 const SpeedDials = () => {
   const history = useHistory()
@@ -46,6 +32,14 @@ const SpeedDials = () => {
   const toggle = () => {
     setOpen(!open)
   }
+
+  const actions = [
+    { icon: <HelpIconSvg />, name: "I need help" },
+    {
+      icon: <HeartIconSvg />,
+      name: "I want to help",
+    },
+  ]
 
   return (
     <SpeedDial

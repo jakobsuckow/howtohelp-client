@@ -1,11 +1,10 @@
 import React, { useRef, useEffect } from "react"
 import mapboxgl from "mapbox-gl"
 import { makeStyles } from "@material-ui/core/styles"
-import "./map.scss"
 import "mapbox-gl/dist/mapbox-gl.css"
 
 mapboxgl.accessToken =
-  "pk.eyJ1Ijoibm90YWxlbWVzYSIsImEiOiJjazhiOTZnb2gwM3NxM2ZucGp1Z21mNjZ0In0.Z4nS6wdB4WzflkDItyXSIQ"
+  "pk.eyJ1IjoiamFrb2JzdWNrb3ciLCJhIjoiY2s4M2pmeHo3MGI5bzNtbzVma2w3YTdkOCJ9.SoffMUvqxv6PTh5TYq20kA"
 
 const useStyles = makeStyles(() => ({
   mapContainer: {
