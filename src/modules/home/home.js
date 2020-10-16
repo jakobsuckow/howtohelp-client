@@ -9,7 +9,7 @@ const Home = () => {
     <GlobalDataProvider>
       <Overlay />
       <SpeedDials />
-      {!process.env.NODE_ENV === "development" && <Map />}
+      <Map />
     </GlobalDataProvider>
   )
 }
