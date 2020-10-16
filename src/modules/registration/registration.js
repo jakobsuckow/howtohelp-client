@@ -6,6 +6,7 @@ import { AlertContext } from "../../components/alert/alertProvider"
 import Layout from "../../components/layout/layout"
 import { Box, Button } from "@material-ui/core"
 import FormInput from "../../form/formInput"
+import FormCheckbox from "../../form/formCheckbox"
 
 const Registration = () => {
   const methods = useForm({
@@ -31,6 +32,7 @@ const Registration = () => {
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
+              <FormCheckbox />
               <FormInput
                 id="registration-firstname"
                 name="firstName"
