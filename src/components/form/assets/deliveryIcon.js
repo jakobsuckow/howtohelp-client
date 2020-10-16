@@ -40,21 +40,21 @@ const DeliveryIcon = (props) => {
         d="M5.60526 5.54544L1 5.54544"
         className={classes.path}
         strokeWidth="1.4"
-        strokeLineCap="round"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M5.60523 9.18182L1.92102 9.18182"
         className={classes.path}
         strokeWidth="1.4"
-        strokeLineCap="round"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M5.6052 12.8182H2.84204"
         className={classes.path}
         strokeWidth="1.4"
-        strokeLineCap="round"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path

@@ -1,13 +1,12 @@
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import { useForm, FormContext } from "react-hook-form"
+import { useForm, FormProvider } from "react-hook-form"
 import Layout from "../../components/layout/layout"
-import { Box, Button } from "@material-ui/core"
-import FormInput from "../../components/form/formInput"
+import { Box, Button, Typography } from "@material-ui/core"
 import FormCheckbox from "../../components/form/formCheckbox"
 import DogWalkingIcon from "../../components/form/assets/dogWalkingIcon"
 import DeliveryIcon from "../../components/form/assets/deliveryIcon"
-
+import FormInput from "../../components/form/formInput"
 const Registration = () => {
   const methods = useForm({
     mode: "onBlur",
@@ -20,26 +19,17 @@ const Registration = () => {
 
   const { handleSubmit } = methods
 
-
-
   return (
     <Layout>
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <Box component="form" onSubmit={handleSubmit((d) => console.log(d))}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <FormInput
-                id="registration-firstname"
-                name="firstName"
-                label="Firstname"
-                placeholder="Enter your firstname"
-                required
-              />
-            </Grid>
+            <Typography variant="h2">What can you help with ?</Typography>
             <Grid item xs={12}>
               <FormCheckbox
                 icon={<DogWalkingIcon />}
                 label="Dogwalking"
+                name="dogwalking"
                 checkedIcon={<DogWalkingIcon checked />}
               />
             </Grid>
@@ -47,15 +37,19 @@ const Registration = () => {
               <FormCheckbox
                 icon={<DeliveryIcon />}
                 label="Delivery"
+                name="delivery"
                 checkedIcon={<DeliveryIcon checked />}
               />
+            </Grid>
+            <Grid item xs={12}>
+              <FormInput name="fistName" label="First Name" />
             </Grid>
             <Grid item xs={12}>
               <Button type="submit">Submit</Button>
             </Grid>
           </Grid>
         </Box>
-      </FormContext>
+      </FormProvider>
     </Layout>
   )
 }
