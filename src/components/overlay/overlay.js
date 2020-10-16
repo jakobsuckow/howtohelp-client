@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   makeStyles,
@@ -8,6 +9,7 @@ import {
 } from "@material-ui/core"
 import CloseIcon from "@material-ui/icons/Close"
 import React from "react"
+import Registration from "../../modules/registration/registration"
 import { GlobalDataContext } from "../../modules/shared/app/globalDataProvider"
 
 const useStyles = makeStyles((theme) => ({
@@ -25,20 +27,20 @@ const Overlay = () => {
     <Slide direction="up" in={modal.open} mountOnEnter unmountOnExit>
       <Paper elevation={4} className={classes.paper}>
         <Container>
-          <Button
-            variant="outlined"
-            onClick={() =>
-              setModal({
-                open: false,
-              })
-            }
-            startIcon={<CloseIcon />}
-          >
-            Close
-          </Button>
-          {modal.message === "providehelp" && (
-            <Typography variant="h2">Provide Help</Typography>
-          )}
+          <Box mt={4}>
+            <Button
+              variant="outlined"
+              onClick={() =>
+                setModal({
+                  open: false,
+                })
+              }
+              startIcon={<CloseIcon />}
+            >
+              Close
+            </Button>
+          </Box>
+          {modal.message === "providehelp" && <Registration />}
           {modal.message === "gethelp" && (
             <Typography variant="h2">Get Help</Typography>
           )}
