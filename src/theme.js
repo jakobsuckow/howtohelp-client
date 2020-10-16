@@ -4,15 +4,19 @@ import createBreakpoints from "@material-ui/core/styles/createBreakpoints"
 
 export const colors = {
   white: `#ffffff`,
+  primaryDarkBlue: "#05065C",
   primaryDark: "#000",
   primaryGrey: "#E1E1E1",
 }
 
 const breakpoints = createBreakpoints({})
-const spacing = createSpacing({})
+const spacing = createSpacing()
 const theme = createMuiTheme({
   palette: {
     common: colors,
+    primary: {
+      main: colors.primaryDarkBlue,
+    },
   },
   typography: {
     fontFamily: "DM Sans",
@@ -103,6 +107,11 @@ const theme = createMuiTheme({
       outlined: {
         backgroundColor: colors.primaryGrey,
         border: "none",
+      },
+    },
+    MuiFab: {
+      primary: {
+        backgroundColor: colors.primaryDarkBlue,
       },
     },
     MuiSpeedDialAction: {

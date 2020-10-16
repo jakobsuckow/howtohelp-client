@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 }))
 const Input = React.forwardRef((props, ref) => {
-  const { required, error, disabled, label, id } = props
+  const { required, error, label, id } = props
   const classes = useStyles({
     error,
   })
@@ -27,6 +27,7 @@ const Input = React.forwardRef((props, ref) => {
           component="label"
           color={error ? "error" : "initial"}
           htmlFor={id}
+          ref={ref}
         >
           {label}
           {!required && <Typography>Optional</Typography>}
