@@ -1,6 +1,6 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
-import Input from "../components/input/input"
+import Input from "../input/input"
 
 const FormInput = (props) => {
   const { id, type, name, required, minLength, validate, ...rest } = props

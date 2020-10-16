@@ -5,8 +5,9 @@ import { useForm, FormContext } from "react-hook-form"
 import { AlertContext } from "../../components/alert/alertProvider"
 import Layout from "../../components/layout/layout"
 import { Box, Button } from "@material-ui/core"
-import FormInput from "../../form/formInput"
-import FormCheckbox from "../../form/formCheckbox"
+import FormInput from "../../components/form/formInput"
+import FormCheckbox from "../../components/form/formCheckbox"
+import DogWalkingIcon from "../../components/form/assets/dogWalkingIcon"
 
 const Registration = () => {
   const methods = useForm({
@@ -32,7 +33,11 @@ const Registration = () => {
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <FormCheckbox />
+              <FormCheckbox
+                icon={<DogWalkingIcon />}
+                label="Dogwalking"
+                checkedIcon={<DogWalkingIcon checked />}
+              />
               <FormInput
                 id="registration-firstname"
                 name="firstName"
