@@ -7,6 +7,7 @@ import SpeedDialAction from "@material-ui/lab/SpeedDialAction"
 import { useHistory } from "react-router-dom"
 import { ReactComponent as HelpIconSvg } from "./assets/needhelp.svg"
 import { ReactComponent as HeartIconSvg } from "./assets/hearticon.svg"
+import { GlobalDataContext } from "../../modules/shared/app/globalDataProvider"
 
 const useStyles = makeStyles((theme) => ({
   speedDial: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SpeedDials = () => {
+  const { setModal } = React.useContext(GlobalDataContext)
   const history = useHistory()
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
@@ -34,10 +36,11 @@ const SpeedDials = () => {
   }
 
   const actions = [
-    { icon: <HelpIconSvg />, name: "I need help" },
+    { icon: <HelpIconSvg />, name: "I need help", route: "gethelp" },
     {
       icon: <HeartIconSvg />,
       name: "I want to help",
+      route: "providehelp",
     },
   ]
 
@@ -57,7 +60,12 @@ const SpeedDials = () => {
           tooltipTitle={action.name}
           tooltipOpen
           className={classes.actionIcon}
-          onClick={() => history.push("/registration")}
+          onClick={() =>
+            setModal({
+              open: true,
+              message: action.route,
+            })
+          }
         />
       ))}
     </SpeedDial>

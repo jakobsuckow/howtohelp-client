@@ -5,6 +5,7 @@ import createBreakpoints from "@material-ui/core/styles/createBreakpoints"
 export const colors = {
   white: `#ffffff`,
   primaryDark: "#000",
+  primaryGrey: "#E1E1E1",
 }
 
 const breakpoints = createBreakpoints({})
@@ -91,18 +92,17 @@ const theme = createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
-        width: "100%",
+        textTransform: "none",
         paddingTop: spacing(1.5),
         paddingBottom: spacing(1.5),
         fontSize: 16,
         [breakpoints.up("sm")]: {
           fontSize: 18,
         },
-        fontWeight: 400,
-        lineHeight: 1,
-        textTransform: "none",
-        letterSpacing: 2,
-        textAlign: "center",
+      },
+      outlined: {
+        backgroundColor: colors.primaryGrey,
+        border: "none",
       },
     },
     MuiSpeedDialAction: {
@@ -137,8 +137,6 @@ const theme = createMuiTheme({
 })
 
 export default theme
-
-
 
 // .mapboxgl-popup {
 //   font-family: "Baloo Thambi 2", cursive;
