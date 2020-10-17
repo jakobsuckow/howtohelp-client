@@ -23,9 +23,6 @@ const Registration = () => {
     mode: "onBlur",
     reValidateMode: "onBlur",
     submitFocusError: false,
-    defaultValues: {
-      firstName: "asdasd",
-    },
   })
 
   const { showAlert } = React.useContext(AlertContext)
@@ -33,10 +30,15 @@ const Registration = () => {
   const { handleSubmit } = methods
 
   const onSubmit = (data) => {
-    showAlert({
-      message: "Hi",
-    })
-    console.log(data)
+    if (Object.keys(data).every((k) => !data[k])) {
+      showAlert({
+        message: "Please select at least one value",
+      })
+    } else {
+      showAlert({
+        message: "Thanks",
+      })
+    }
   }
 
   return (
@@ -69,7 +71,7 @@ const Registration = () => {
                   icon={<Food />}
                   checkedIcon={<FoodChecked />}
                   label="I can provide food"
-                  name="food"
+                  name="food1"
                 />
               </Grid>
               <Grid item xs={6} sm={3}>
@@ -96,7 +98,7 @@ const Registration = () => {
                 <FormCheckbox
                   icon={<Covid />}
                   label="I can answer questions about covid"
-                  name="delivery"
+                  name="covid"
                   checkedIcon={<CovidChecked checked />}
                 />
               </Grid>
@@ -112,8 +114,8 @@ const Registration = () => {
                 <FormCheckbox
                   icon={<Maintenance />}
                   checkedIcon={<Maintenance />}
-                  label="I can help with shopping"
-                  name="shopping"
+                  label="I can help with maintenance"
+                  name="maintenance"
                 />
               </Grid>
             </Grid>
