@@ -32,7 +32,6 @@ const Registration = () => {
   const { handleSubmit } = methods
 
   const onSubmit = (data) => {
-    // console.log(data)
     const a = Object.keys(data).every((k) => !data[k])
     console.log(a)
     if (Object.keys(data).every((k) => !data[k])) {

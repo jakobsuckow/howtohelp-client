@@ -1,16 +1,22 @@
 import React from "react"
 import Map from "../../components/map/map"
 import SpeedDials from "../../components/button/speedDials"
-import Overlay from "../../components/overlay/overlay"
+import Overlay from "../../modules/shared/overlay/overlay"
 import GlobalDataProvider from "../shared/app/globalDataProvider"
+import { Helmet } from "react-helmet"
 
 const Home = () => {
   return (
-    <GlobalDataProvider>
-      <Overlay />
-      <SpeedDials />
-      <Map />
-    </GlobalDataProvider>
+    <>
+      <Helmet>
+        <title>How to help | Home</title>
+      </Helmet>
+      <GlobalDataProvider>
+        <Overlay />
+        <SpeedDials />
+        <Map />
+      </GlobalDataProvider>
+    </>
   )
 }
 
