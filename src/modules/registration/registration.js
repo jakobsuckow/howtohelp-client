@@ -4,7 +4,8 @@ import { useForm, FormProvider } from "react-hook-form"
 import Layout from "../../components/layout/layout"
 import { Box, Button, Typography } from "@material-ui/core"
 import FormCheckbox from "../../components/form/formCheckbox"
-import DeliveryIcon from "../../components/form/assets/deliveryIcon"
+import { ReactComponent as DeliveryIcon } from "../../components/form/assets/delivery.svg"
+import { ReactComponent as Maintenance } from "../../components/form/assets/maintenance.svg"
 import { ReactComponent as Food } from "../../components/form/assets/food.svg"
 import { ReactComponent as FoodChecked } from "../../components/form/assets/food-checked.svg"
 import { ReactComponent as Shopping } from "../../components/form/assets/shopping.svg"
@@ -13,6 +14,8 @@ import { ReactComponent as DogWalking } from "../../components/form/assets/dogwa
 import { ReactComponent as DogWalkingChecked } from "../../components/form/assets/dogwalking-checked.svg"
 import { ReactComponent as Cleaning } from "../../components/form/assets/cleaning.svg"
 import { ReactComponent as CleaningChecked } from "../../components/form/assets/cleaning-checked.svg"
+import { ReactComponent as Covid } from "../../components/form/assets/covid.svg"
+import { ReactComponent as CovidChecked } from "../../components/form/assets/covid-checked.svg"
 import { AlertContext } from "../../components/alert/alertProvider"
 
 const Registration = () => {
@@ -91,10 +94,10 @@ const Registration = () => {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <FormCheckbox
-                  icon={<DeliveryIcon />}
-                  label="Delivery"
+                  icon={<Covid />}
+                  label="I can answer questions about covid"
                   name="delivery"
-                  checkedIcon={<DeliveryIcon checked />}
+                  checkedIcon={<CovidChecked checked />}
                 />
               </Grid>
               <Grid item xs={6} sm={3}>
@@ -107,8 +110,8 @@ const Registration = () => {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <FormCheckbox
-                  icon={<Shopping />}
-                  checkedIcon={<ShoppingChecked />}
+                  icon={<Maintenance />}
+                  checkedIcon={<Maintenance />}
                   label="I can help with shopping"
                   name="shopping"
                 />
