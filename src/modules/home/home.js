@@ -9,7 +9,7 @@ const Home = () => {
     <GlobalDataProvider>
       <Overlay />
       <SpeedDials />
-      {/* <Map /> */}
+      <Map />
     </GlobalDataProvider>
   )
 }

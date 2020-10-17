@@ -7,6 +7,7 @@ export const colors = {
   primaryDarkBlue: "#05065C",
   primaryDark: "#000",
   primaryGrey: "#E1E1E1",
+  secondaryGrey: "B2B2B2",
 }
 
 const breakpoints = createBreakpoints({})
@@ -16,6 +17,9 @@ const theme = createMuiTheme({
     common: colors,
     primary: {
       main: colors.primaryDarkBlue,
+    },
+    unChecked: {
+      main: colors.secondaryGrey,
     },
   },
   typography: {
@@ -74,7 +78,7 @@ const theme = createMuiTheme({
       },
     },
     body1: {
-      fontFamily: "DM Sans",
+      fontFamily: "Red Hat Display",
       color: colors.primaryDark,
       fontSize: 14,
       lineHeight: "22px",
@@ -84,6 +88,7 @@ const theme = createMuiTheme({
       },
     },
     body2: {
+      fontFamily: "Red Hat Display",
       color: colors.primaryDark,
       fontSize: 12,
       lineHeight: "16px",
@@ -121,6 +126,28 @@ const theme = createMuiTheme({
         color: colors.primaryDark,
         backgroundColor: colors.white,
         boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
+      },
+    },
+    MuiFormControlLabel: {
+      label: {},
+    },
+    MuiSnackbar: {
+      root: {
+        zIndex: 100000,
+      },
+      anchorOriginTopCenter: {
+        [breakpoints.up("xs")]: {
+          top: 80,
+          left: "50%",
+          right: "auto",
+          transform: "translateX(-50%)",
+        },
+        [breakpoints.up("md")]: {
+          top: 24,
+          left: "50%",
+          right: "auto",
+          transform: "translateX(-50%)",
+        },
       },
     },
     MuiCssBaseline: {
