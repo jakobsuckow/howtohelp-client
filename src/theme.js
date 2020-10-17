@@ -113,6 +113,9 @@ const theme = createMuiTheme({
         backgroundColor: colors.primaryGrey,
         border: "none",
       },
+      contained: {
+        backgroundColor: "",
+      },
     },
     MuiFab: {
       primary: {

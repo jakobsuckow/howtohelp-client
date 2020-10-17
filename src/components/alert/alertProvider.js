@@ -25,7 +25,7 @@ const AlertProvider = (props) => {
     <AlertContext.Provider value={{ showAlert, hideAlert }}>
       <Snackbar
         open={notification.isOpen}
-        autoHideDuration={8000}
+        autoHideDuration={3000}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         onClose={hideAlert}
       >

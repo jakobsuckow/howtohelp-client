@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(0),
     alignItems: "center",
     boxShadow: "0px 4px 16px rgba(205, 205, 205, 0.24)",
-    backgroundColor: `#ffffff`,
+    backgroundColor: theme.palette.primary.main,
     border: "none",
     [theme.breakpoints.up("xs")]: {
       width: 321,

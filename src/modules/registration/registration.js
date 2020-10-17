@@ -17,6 +17,7 @@ import { ReactComponent as CleaningChecked } from "../../components/form/assets/
 import { ReactComponent as Covid } from "../../components/form/assets/covid.svg"
 import { ReactComponent as CovidChecked } from "../../components/form/assets/covid-checked.svg"
 import { AlertContext } from "../../components/alert/alertProvider"
+import { GlobalDataContext } from "../shared/app/globalDataProvider"
 
 const Registration = () => {
   const methods = useForm({
@@ -26,10 +27,14 @@ const Registration = () => {
   })
 
   const { showAlert } = React.useContext(AlertContext)
+  const { setModal } = React.useContext(GlobalDataContext)
 
   const { handleSubmit } = methods
 
   const onSubmit = (data) => {
+    // console.log(data)
+    const a = Object.keys(data).every((k) => !data[k])
+    console.log(a)
     if (Object.keys(data).every((k) => !data[k])) {
       showAlert({
         message: "Please select at least one value",
@@ -38,6 +43,11 @@ const Registration = () => {
       showAlert({
         message: "Thanks",
       })
+      setTimeout(() => {
+        setModal({
+          open: false,
+        })
+      }, [200])
     }
   }
 
@@ -121,7 +131,9 @@ const Registration = () => {
             </Grid>
           </Box>
           <Box>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" variant="outlined">
+              Submit
+            </Button>
           </Box>
         </Box>
       </FormProvider>
