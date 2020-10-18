@@ -101,9 +101,10 @@ const theme = createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
+        lineHeight: 1,
         textTransform: "none",
-        paddingTop: spacing(1.5),
-        paddingBottom: spacing(1.5),
+        paddingTop: spacing(),
+        paddingBottom: spacing(),
         fontSize: 16,
         [breakpoints.up("sm")]: {
           fontSize: 18,
@@ -134,13 +135,21 @@ const theme = createMuiTheme({
     MuiFormControlLabel: {
       label: {},
     },
+    MuiAlert: {
+      root: {
+        borderRadius: spacing(4),
+      },
+      message: {
+        color: colors.white,
+      },
+    },
     MuiSnackbar: {
       root: {
         zIndex: 100000,
       },
       anchorOriginTopCenter: {
         [breakpoints.up("xs")]: {
-          top: 80,
+          top: 48,
           left: "50%",
           right: "auto",
           transform: "translateX(-50%)",

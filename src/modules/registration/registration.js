@@ -37,6 +37,7 @@ const Registration = () => {
     if (Object.keys(data).every((k) => !data[k])) {
       showAlert({
         message: "Please select at least one value",
+        severity: "info",
       })
     } else {
       showAlert({
@@ -129,8 +130,8 @@ const Registration = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box>
-            <Button type="submit" variant="outlined">
+          <Box style={{ textAlign: "right" }}>
+            <Button type="submit" variant="contained" color="primary">
               Submit
             </Button>
           </Box>

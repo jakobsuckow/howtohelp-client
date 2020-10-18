@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import Snackbar from "@material-ui/core/Snackbar"
 import Alert from "./alert"
@@ -8,16 +8,17 @@ export const AlertContext = React.createContext()
 const AlertProvider = (props) => {
   const { children } = props
 
-  const [notification, setNotification] = useState({
+  const [notification, setNotification] = React.useState({
     isOpen: false,
+    severity: "",
     message: "",
   })
 
-  const showAlert = useCallback(({ message }) => {
-    setNotification({ isOpen: true, message })
+  const showAlert = React.useCallback(({ severity, message }) => {
+    setNotification({ isOpen: true, severity, message })
   }, [])
 
-  const hideAlert = useCallback(() => {
+  const hideAlert = React.useCallback(() => {
     setNotification((state) => ({ ...state, isOpen: false }))
   }, [])
 
@@ -29,7 +30,12 @@ const AlertProvider = (props) => {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         onClose={hideAlert}
       >
-        <Alert variant="outlined" onClose={hideAlert}>
+        <Alert
+          variant="outlined"
+          onClose={hideAlert}
+          severity={notification.severity}
+          onClose={hideAlert}
+        >
           {notification.message}
         </Alert>
       </Snackbar>
