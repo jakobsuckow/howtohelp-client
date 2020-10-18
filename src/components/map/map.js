@@ -17,30 +17,17 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-function Map() {
+const Map = (props) => {
+  const { data } = props
   const classes = useStyles()
   const mapboxElRef = useRef(null)
-
-  const data = [
-    {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [15.22882, 44.1141],
-      },
-      properties: {
-        id: 1,
-        country: `DE`,
-      },
-    },
-  ]
 
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapboxElRef.current,
-      style: "mapbox://styles/notalemesa/ck8dqwdum09ju1ioj65e3ql3k",
-      center: [10, 40],
-      zoom: 3,
+      style: "mapbox://styles/sueck94/ckgc1uk8d0cb31ap3fkfw1zzm",
+      center: [13.404954, 52.520008],
+      zoom: 12,
     })
     map.once(`load`, () => {
       map.addSource("points", {

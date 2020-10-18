@@ -6,6 +6,19 @@ import GlobalDataProvider from "../shared/app/globalDataProvider"
 import { Helmet } from "react-helmet"
 
 const Home = () => {
+  const data = [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [15.22882, 44.1141],
+      },
+      properties: {
+        id: 1,
+        country: `DE`,
+      },
+    },
+  ]
   return (
     <>
       <Helmet>
@@ -14,7 +27,7 @@ const Home = () => {
       <GlobalDataProvider>
         <Overlay />
         <SpeedDials />
-        <Map />
+        <Map data={data} />
       </GlobalDataProvider>
     </>
   )
