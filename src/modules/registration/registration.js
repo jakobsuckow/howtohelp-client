@@ -33,10 +33,8 @@ const Registration = () => {
   const { handleSubmit } = methods
 
   const onSubmit = (data) => {
-    console.log(data)
     const hasChecked = !Object.keys(data).every((k) => !data[k])
-
-    if (!hasChecked || data.other === "") {
+    if (!hasChecked && data.other === "") {
       showAlert({
         message: "Please select at least one value",
         severity: "info",
