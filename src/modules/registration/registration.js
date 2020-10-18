@@ -18,6 +18,7 @@ import { ReactComponent as Covid } from "../../components/form/assets/covid.svg"
 import { ReactComponent as CovidChecked } from "../../components/form/assets/covid-checked.svg"
 import { AlertContext } from "../../components/alert/alertProvider"
 import { GlobalDataContext } from "../shared/app/globalDataProvider"
+import FormInput from "../../components/form/formInput"
 
 const Registration = () => {
   const methods = useForm({
@@ -32,9 +33,10 @@ const Registration = () => {
   const { handleSubmit } = methods
 
   const onSubmit = (data) => {
-    const a = Object.keys(data).every((k) => !data[k])
-    console.log(a)
-    if (Object.keys(data).every((k) => !data[k])) {
+    console.log(data)
+    const hasChecked = !Object.keys(data).every((k) => !data[k])
+
+    if (!hasChecked || data.other === "") {
       showAlert({
         message: "Please select at least one value",
         severity: "info",
@@ -71,7 +73,7 @@ const Registration = () => {
               <Grid item xs={6} sm={3}>
                 <FormCheckbox
                   icon={<DeliveryIcon />}
-                  label="Delivery"
+                  label="I can help delivery packages"
                   name="delivery"
                   checkedIcon={<DeliveryIcon checked />}
                 />
@@ -130,10 +132,23 @@ const Registration = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box style={{ textAlign: "right" }}>
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
+          <Box mb={4} mt={4} pl={5} pr={5}>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <FormInput
+                  name="other"
+                  placeholder="I can help with..."
+                  label="other"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Box style={{ textAlign: "right" }}>
+                  <Button type="submit" variant="contained" color="primary">
+                    Next
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </FormProvider>

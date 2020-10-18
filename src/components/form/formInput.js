@@ -12,12 +12,17 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       paddingTop: theme.spacing(2),
     },
-    border: `1px solid ${theme.palette.common.black}`,
+    "&:focus": {
+      borderBottom: `1px solid #000`,
+    },
+
+    border: "none",
+    borderBottom: `1px solid #B2B2B2`,
     outline: "none",
     backgroundColor: "transparent",
     color: theme.palette.common.black,
     "&::placeholder": {
-      color: theme.palette.common.black,
+      color: theme.palette.common.secondaryGrey,
     },
     ...(disabled && {
       pointerEvents: "none",
@@ -42,25 +47,38 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const FormInput = (props) => {
-  const { name, required, label } = props
+  const { name, required, label, id, placeholder } = props
   const classes = useStyles()
   const { register, errors } = useFormContext()
 
   return (
     <div className={classes.root}>
       {label && (
-        <Typography component="label" htmlFor={name}>
+        <Typography component="label" htmlFor={name} className={classes.label}>
           {label}
-          {!required && <Typography>Optional</Typography>}
         </Typography>
       )}
-      <Typography
-        component="input"
-        variant="body1"
-        ref={register}
-        name={name}
-        className={classes.input}
-      />
+      <div className={classes.inputContainer}>
+        <Typography
+          component="input"
+          variant="body1"
+          name={name}
+          ref={register}
+          id={id}
+          className={classes.input}
+          placeholder={placeholder}
+        />
+      </div>
+      {errors && (
+        <Typography
+          component="p"
+          variant="body2"
+          color="error"
+          className={classes.error}
+        >
+          {errors.message}
+        </Typography>
+      )}
     </div>
   )
 }

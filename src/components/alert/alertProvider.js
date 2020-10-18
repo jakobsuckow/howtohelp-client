@@ -34,7 +34,6 @@ const AlertProvider = (props) => {
           variant="outlined"
           onClose={hideAlert}
           severity={notification.severity}
-          onClose={hideAlert}
         >
           {notification.message}
         </Alert>
