@@ -1,7 +1,10 @@
 import React, { useRef, useEffect } from "react"
+import ReactDOM from "react-dom"
 import mapboxgl from "mapbox-gl"
 import { makeStyles } from "@material-ui/core/styles"
 import "mapbox-gl/dist/mapbox-gl.css"
+import fetchFakeData from "../../modules/shared/app/fetchFakeData"
+import Popup from "../popup/popup"
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamFrb2JzdWNrb3ciLCJhIjoiY2s4M2pmeHo3MGI5bzNtbzVma2w3YTdkOCJ9.SoffMUvqxv6PTh5TYq20kA"
@@ -24,6 +27,8 @@ const Map = (props) => {
   const { data } = props
   const classes = useStyles()
   const mapboxElRef = useRef(null)
+  const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }))
+
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapboxElRef.current,
@@ -31,36 +36,54 @@ const Map = (props) => {
       center: [13.404954, 52.520008],
       zoom: 12,
     })
-    map.once(`load`, () => {
-      map.addSource("points", {
-        type: `geojson`,
+    map.once(`load`, async () => {
+      map.addSource("random-points-data", {
+        type: "geojson",
         data: {
-          type: `FeatureCollection`,
-          features: data,
+          type: "FeatureCollection",
+          features: [],
         },
       })
       map.addLayer({
-        id: "circles",
-        source: "points",
-        type: "circle",
-        paint: {
-          "circle-opacity": 0.75,
-          "circle-stroke-width": 1,
-          "circle-radius": 4,
-          "circle-color": "#000",
+        id: "random-points-layer",
+        source: "random-points-data",
+        type: "symbol",
+        layout: {
+          // full list of icons here: https://labs.mapbox.com/maki-icons
+          "icon-image": "bakery-15",
+          "icon-padding": 0,
+          "icon-allow-overlap": true,
         },
       })
+      const { lng, lat } = map.getCenter()
+      const results = await fetchFakeData({ longitude: lng, latitude: lat })
+      map.getSource("random-points-data").setData(results)
     })
-    map.on("click", "circles", (e) => {
-      console.log(e)
+
+    map.on("moveend", async () => {
+      const zoom = map.getZoom()
+      const bounds = map.getBounds()
+      if (zoom > 10) {
+        setTimeout(() => {
+          console.log(`making a request with...`)
+          console.log(bounds)
+          console.log(bounds.toArray())
+        }, [500])
+      }
     })
-    map.on("mouseenter", "circles", () => {
-      map.getCanvas().style.cursor = "pointer"
+
+    map.on("click", "random-points-layer", (e) => {
+      if (e.features.length) {
+        const feature = e.features[0]
+        const popupNode = document.createElement("div")
+        ReactDOM.render(<Popup feature={feature} />, popupNode)
+        popUpRef.current
+          .setLngLat(feature.geometry.coordinates)
+          .setDOMContent(popupNode)
+          .addTo(map)
+      }
     })
-    const popup = new mapboxgl.Popup({
-      closeButton: false,
-      closeOnClick: false,
-    })
+    return () => map.remove()
   }, [data])
 
   return (
