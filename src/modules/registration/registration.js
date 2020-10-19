@@ -41,7 +41,7 @@ const Registration = () => {
       })
     } else {
       showAlert({
-        message: "Thanks",
+        message: "Thanks for your submission",
       })
       setTimeout(() => {
         setModal({
@@ -132,14 +132,14 @@ const Registration = () => {
           </Box>
           <Box mb={4} mt={4} pl={5} pr={5}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <FormInput
                   name="other"
                   placeholder="I can help with..."
                   label="other"
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Box style={{ textAlign: "right" }}>
                   <Button type="submit" variant="contained" color="primary">
                     Next
