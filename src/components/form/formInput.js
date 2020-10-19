@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "16px",
     },
     flex: 1,
+    minWidth: "320px",
     padding: theme.spacing(2),
     paddingTop: theme.spacing(1.5),
     paddingBottom: theme.spacing(1.5),
