@@ -27,7 +27,7 @@ const Map = (props) => {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapboxElRef.current,
-      style: "mapbox://styles/sueck94/ckgc1uk8d0cb31ap3fkfw1zzm?optimize=true",
+      style: "mapbox://styles/sueck94/ckgc1uk8d0cb31ap3fkfw1zzm",
       center: [13.404954, 52.520008],
       zoom: 12,
     })
