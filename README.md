@@ -11,5 +11,6 @@ Strengthen your Neighbourhood
 1. Add Figma Icons - Done
 2. Add animation for registration - Done
 3. Add form stepper for registration
-4. Add Design for Map
+4. Add Design for Map - Done
 5. Add secondary font
+6. Add Popup

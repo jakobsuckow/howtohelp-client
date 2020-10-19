@@ -18,13 +18,20 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     height: "100vh",
     width: "100vw",
+    boxShadow: "none",
   },
 }))
 const Overlay = () => {
   const { modal, setModal } = React.useContext(GlobalDataContext)
   const classes = useStyles()
   return (
-    <Slide direction="up" in={modal.open} mountOnEnter unmountOnExit>
+    <Slide
+      direction="up"
+      in={modal.open}
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 500, exit: 500 }}
+    >
       <Paper elevation={4} className={classes.paper}>
         <Container>
           <Box mt={4}>

@@ -5,6 +5,9 @@ import { useFormContext } from "react-hook-form"
 const useStyles = makeStyles((theme) => ({
   root: {},
   input: ({ disabled }) => ({
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "16px",
+    },
     flex: 1,
     padding: theme.spacing(2),
     paddingTop: theme.spacing(1.5),
@@ -15,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     "&:focus": {
       borderBottom: `1px solid #000`,
     },
-
+    borderRadius: 0,
     border: "none",
     borderBottom: `1px solid #B2B2B2`,
     outline: "none",
