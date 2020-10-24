@@ -50,10 +50,7 @@ const Map = (props) => {
       })
     }
 
-    const [
-      [longitude, latitude],
-      [longitudeEnd, latitudeEnd],
-    ] = map.getBounds().toArray()
+    const [[longitude, latitude], [longitudeEnd, latitudeEnd]] = map.getBounds().toArray()
     map.once(`load`, async () => {
       map.addSource("random-points-data", {
         type: "geojson",
