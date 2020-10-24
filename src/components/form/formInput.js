@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const FormInput = (props) => {
-  const { name, required, label, id, placeholder } = props
+  const { name, label, id, placeholder } = props
   const classes = useStyles()
   const { register, errors } = useFormContext()
 

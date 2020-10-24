@@ -41,7 +41,6 @@ export default (name) => {
   const apiMethod = React.useCallback(
     (params) => {
       return Api[name](params).then((res) => {
-        console.log(params)
         if (res.status === 500) {
           showAlert({ message: "Error in useApi" })
           console.log(res)
@@ -49,7 +48,7 @@ export default (name) => {
         return res
       })
     },
-    [name]
+    [name, showAlert]
   )
   return [apiMethod]
 }

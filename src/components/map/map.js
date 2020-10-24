@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import "mapbox-gl/dist/mapbox-gl.css"
 import Popup from "../popup/popup"
 import useApi from "../../modules/shared/app/useApi"
+import { AlertContext } from "../alert/alertProvider"
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamFrb2JzdWNrb3ciLCJhIjoiY2s4M2pmeHo3MGI5bzNtbzVma2w3YTdkOCJ9.SoffMUvqxv6PTh5TYq20kA"
@@ -28,8 +29,11 @@ const Map = (props) => {
   const classes = useStyles()
   const mapboxElRef = useRef(null)
   const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }))
+
   const [getPinsByDisplayApi] = useApi("getPinsByDisplay")
   const [postPinApi] = useApi("postPin")
+
+  const { showAlert } = React.useContext(AlertContext)
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -62,15 +66,10 @@ const Map = (props) => {
 
     map.on("moveend", async () => {
       setTimeout(() => {
-        const bounds = map.getBounds()
-        console.log(bounds.toArray())
-
-        // latitude, longitude, latitudeEnd, longitudeEnd
-
         const [
-          [latitude, longitude],
-          [latitudeEnd, longitudeEnd],
-        ] = bounds.toArray()
+          [longitude, latitude],
+          [longitudeEnd, latitudeEnd],
+        ] = map.getBounds().toArray()
 
         getPinsByDisplayApi({
           latitude,
@@ -84,11 +83,11 @@ const Map = (props) => {
     })
 
     map.on("click", (e) => {
-      const { lngLat } = e
-      const latitude = lngLat.toArray()[1]
-      const longitude = lngLat.toArray()[0]
-      postPinApi({ latitude, longitude }).then((res) => {
-        console.log(res)
+      const [longitude, latitude] = e.lngLat.toArray()
+      postPinApi({ latitude, longitude }).then(() => {
+        showAlert({
+          message: "New Pin created",
+        })
       })
     })
 

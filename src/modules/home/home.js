@@ -19,7 +19,6 @@ const Home = () => {
   React.useEffect(() => {
     const [longitude, latitude] = center
     getPinsByCenterApi({ latitude, longitude }).then((res) => {
-      console.log(res)
       setPins({
         type: "FeatureCollection",
         features: res.data,
