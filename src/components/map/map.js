@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Map = (props) => {
-  const { data, center } = props
+  const { center } = props
   const classes = useStyles()
   const mapboxElRef = useRef(null)
   const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }))
@@ -42,6 +42,18 @@ const Map = (props) => {
       center: center,
       zoom: 12,
     })
+
+    const addToLayer = (name, data) => {
+      return map.getSource(name).setData({
+        type: "FeatureCollection",
+        features: data,
+      })
+    }
+
+    const [
+      [longitude, latitude],
+      [longitudeEnd, latitudeEnd],
+    ] = map.getBounds().toArray()
     map.once(`load`, async () => {
       map.addSource("random-points-data", {
         type: "geojson",
@@ -61,23 +73,29 @@ const Map = (props) => {
           "icon-allow-overlap": true,
         },
       })
-      map.getSource("random-points-data").setData(data)
+      getPinsByDisplayApi({
+        latitude,
+        longitude,
+        latitudeEnd,
+        longitudeEnd,
+      }).then((res) => {
+        addToLayer("random-points-data", res.data)
+      })
     })
 
     map.on("moveend", async () => {
+      const [
+        [longitude, latitude],
+        [longitudeEnd, latitudeEnd],
+      ] = map.getBounds().toArray()
       setTimeout(() => {
-        const [
-          [longitude, latitude],
-          [longitudeEnd, latitudeEnd],
-        ] = map.getBounds().toArray()
-
         getPinsByDisplayApi({
           latitude,
           longitude,
           latitudeEnd,
           longitudeEnd,
-        }).then((data) => {
-          console.log(data)
+        }).then((res) => {
+          addToLayer("random-points-data", res.data)
         })
       }, [500])
     })
@@ -103,7 +121,7 @@ const Map = (props) => {
       }
     })
     return () => map.remove()
-  }, [data, center, getPinsByDisplayApi, postPinApi])
+  }, [center, showAlert, getPinsByDisplayApi, postPinApi])
 
   return (
     <div className="App">

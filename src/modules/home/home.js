@@ -14,6 +14,13 @@ const Home = () => {
     features: [],
   })
 
+  const [viewport, setViewport] = React.useState({
+    latitude: "",
+    longitude: "",
+    latitudeEnd: "",
+    longitudeEnd: "",
+  })
+
   const [center] = React.useState([13.404954, 52.520008])
 
   React.useEffect(() => {
@@ -33,7 +40,12 @@ const Home = () => {
       <GlobalDataProvider>
         <Overlay />
         <SpeedDials />
-        <Map data={pins} center={center} />
+        <Map
+          data={pins}
+          center={center}
+          viewport={viewport}
+          setViewport={setViewport}
+        />
       </GlobalDataProvider>
     </>
   )
