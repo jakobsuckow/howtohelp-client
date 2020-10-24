@@ -67,11 +67,11 @@ const Map = (props) => {
 
         // latitude, longitude, latitudeEnd, longitudeEnd
 
+        const [
+          [latitude, longitude],
+          [latitudeEnd, longitudeEnd],
+        ] = bounds.toArray()
 
-        const latitude = bounds._ne.lat
-        const longitude = bounds._ne.lng
-        const latitudeEnd = bounds._sw.lat
-        const longitudeEnd = bounds._sw.lng
         getPinsByDisplayApi({
           latitude,
           longitude,
