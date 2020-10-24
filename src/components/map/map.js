@@ -3,8 +3,8 @@ import ReactDOM from "react-dom"
 import mapboxgl from "mapbox-gl"
 import { makeStyles } from "@material-ui/core/styles"
 import "mapbox-gl/dist/mapbox-gl.css"
-import fetchFakeData from "../../modules/shared/app/fetchFakeData"
 import Popup from "../popup/popup"
+import useApi from "../../modules/shared/app/useApi"
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiamFrb2JzdWNrb3ciLCJhIjoiY2s4M2pmeHo3MGI5bzNtbzVma2w3YTdkOCJ9.SoffMUvqxv6PTh5TYq20kA"
@@ -24,16 +24,18 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Map = (props) => {
-  const { data } = props
+  const { data, center } = props
   const classes = useStyles()
   const mapboxElRef = useRef(null)
   const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }))
+  const [getPinsByDisplayApi] = useApi("getPinsByDisplay")
+  const [postPinApi] = useApi("postPin")
 
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapboxElRef.current,
       style: "mapbox://styles/sueck94/ckgc1uk8d0cb31ap3fkfw1zzm",
-      center: [13.404954, 52.520008],
+      center: center,
       zoom: 12,
     })
     map.once(`load`, async () => {
@@ -55,21 +57,39 @@ const Map = (props) => {
           "icon-allow-overlap": true,
         },
       })
-      const { lng, lat } = map.getCenter()
-      const results = await fetchFakeData({ longitude: lng, latitude: lat })
-      map.getSource("random-points-data").setData(results)
+      map.getSource("random-points-data").setData(data)
     })
 
     map.on("moveend", async () => {
-      const zoom = map.getZoom()
-      const bounds = map.getBounds()
-      if (zoom > 10) {
-        setTimeout(() => {
-          console.log(`making a request with...`)
-          console.log(bounds)
-          console.log(bounds.toArray())
-        }, [500])
-      }
+      setTimeout(() => {
+        const bounds = map.getBounds()
+        console.log(bounds.toArray())
+
+        // latitude, longitude, latitudeEnd, longitudeEnd
+
+
+        const latitude = bounds._ne.lat
+        const longitude = bounds._ne.lng
+        const latitudeEnd = bounds._sw.lat
+        const longitudeEnd = bounds._sw.lng
+        getPinsByDisplayApi({
+          latitude,
+          longitude,
+          latitudeEnd,
+          longitudeEnd,
+        }).then((data) => {
+          console.log(data)
+        })
+      }, [500])
+    })
+
+    map.on("click", (e) => {
+      const { lngLat } = e
+      const latitude = lngLat.toArray()[1]
+      const longitude = lngLat.toArray()[0]
+      postPinApi({ latitude, longitude }).then((res) => {
+        console.log(res)
+      })
     })
 
     map.on("click", "random-points-layer", (e) => {
@@ -84,7 +104,7 @@ const Map = (props) => {
       }
     })
     return () => map.remove()
-  }, [data])
+  }, [data, center, getPinsByDisplayApi, postPinApi])
 
   return (
     <div className="App">
