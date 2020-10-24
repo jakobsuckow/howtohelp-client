@@ -4,34 +4,11 @@ import SpeedDials from "../../components/button/speedDials"
 import Overlay from "../../modules/shared/overlay/overlay"
 import GlobalDataProvider from "../shared/app/globalDataProvider"
 import { Helmet } from "react-helmet"
-import useApi from "../shared/app/useApi"
+
 
 const Home = () => {
-  const [getPinsByCenterApi] = useApi("getPinsByCenter")
-
-  const [pins, setPins] = React.useState({
-    type: "",
-    features: [],
-  })
-
-  const [viewport, setViewport] = React.useState({
-    latitude: "",
-    longitude: "",
-    latitudeEnd: "",
-    longitudeEnd: "",
-  })
-
   const [center] = React.useState([13.404954, 52.520008])
 
-  React.useEffect(() => {
-    const [longitude, latitude] = center
-    getPinsByCenterApi({ latitude, longitude }).then((res) => {
-      setPins({
-        type: "FeatureCollection",
-        features: res.data,
-      })
-    })
-  }, [getPinsByCenterApi, center])
   return (
     <>
       <Helmet>
@@ -40,12 +17,7 @@ const Home = () => {
       <GlobalDataProvider>
         <Overlay />
         <SpeedDials />
-        <Map
-          data={pins}
-          center={center}
-          viewport={viewport}
-          setViewport={setViewport}
-        />
+        <Map center={center} />
       </GlobalDataProvider>
     </>
   )
