@@ -5,9 +5,8 @@ import Overlay from "../../modules/shared/overlay/overlay"
 import GlobalDataProvider from "../shared/app/globalDataProvider"
 import { Helmet } from "react-helmet"
 
-
-const Home = () => {
-  const [center] = React.useState([13.404954, 52.520008])
+const Home = (props) => {
+  const { center } = props
 
   return (
     <>

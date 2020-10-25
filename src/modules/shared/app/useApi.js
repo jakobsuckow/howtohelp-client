@@ -2,11 +2,13 @@ import React from "react"
 import axios from "axios"
 import { AlertContext } from "../../../components/alert/alertProvider"
 
-const apiURI = `https://cors-anywhere.herokuapp.com/http://159.65.122.42:5000/api/v1`
+let apiURI = `https://cors-anywhere.herokuapp.com/http://159.65.122.42:5000/api/v1`
+const other = `http://localhost:5000/api/v1`
+apiURI = other
 
 const Api = {
-  getPins: () => {
-    return axios(`${apiURI}/pin/all`, {
+  getCities: () => {
+    return axios(`${apiURI}/city/all`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
