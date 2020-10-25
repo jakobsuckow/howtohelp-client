@@ -2,7 +2,7 @@ import React from "react"
 import axios from "axios"
 import { AlertContext } from "../../../components/alert/alertProvider"
 
-const apiURI = `159.65.122.42:5000/api/v1`
+const apiURI = `http://159.65.122.42:5000/api/v1`
 
 const Api = {
   getPins: () => {
