@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core"
 import CloseIcon from "@material-ui/icons/Close"
 import React from "react"
-import Registration from "../../registration/registration"
+import AddHelp from "../../add-help/addHelp"
 import { GlobalDataContext } from "../app/globalDataProvider"
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +47,7 @@ const Overlay = () => {
               Close
             </Button>
           </Box>
-          {modal.message === "providehelp" && <Registration />}
+          {modal.message === "providehelp" && <AddHelp />}
           {modal.message === "gethelp" && (
             <Typography variant="h2">Get Help</Typography>
           )}
