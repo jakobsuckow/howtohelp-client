@@ -6,6 +6,8 @@ import useApi from '../../modules/shared/app/useApi';
 import { AlertContext } from '../alert/alertProvider';
 import { GlobalDataContext } from '../../modules/shared/app/globalDataProvider';
 
+import heartIcon from './assets/heart.png';
+
 mapboxgl.accessToken =
   'pk.eyJ1IjoiamFrb2JzdWNrb3ciLCJhIjoiY2s4M2pmeHo3MGI5bzNtbzVma2w3YTdkOCJ9.SoffMUvqxv6PTh5TYq20kA';
 
@@ -42,6 +44,11 @@ const Map = (props) => {
       zoom: 12
     });
 
+    map.loadImage(heartIcon, (error, image) => {
+      if (error) throw error;
+      map.addImage('heart-icon', image);
+    });
+
     const addToLayer = (name, data) => {
       return map.getSource(name).setData({
         type: 'FeatureCollection',
@@ -58,15 +65,15 @@ const Map = (props) => {
           features: []
         }
       });
+
       map.addLayer({
         id: 'random-points-layer',
         source: 'random-points-data',
         type: 'symbol',
         layout: {
-          // full list of icons here: https://labs.mapbox.com/maki-icons
-          'icon-image': 'bakery-15',
+          'icon-image': 'heart-icon',
           'icon-padding': 0,
-          'icon-allow-overlap': true
+          'icon-allow-overlap': false
         }
       });
       getPinsByDisplayApi({
@@ -75,7 +82,6 @@ const Map = (props) => {
         latitudeEnd,
         longitudeEnd
       }).then((res) => {
-        console.log(res);
         addToLayer('random-points-data', res.data);
       });
     });
@@ -111,6 +117,14 @@ const Map = (props) => {
         });
       }
     });
+
+    map.on('mouseenter', 'random-points-layer', () => {
+      map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'random-points-layer', () => {
+      map.getCanvas().style.cursor = '';
+    });
+
     return () => map.remove();
   }, [center, showAlert, getPinsByDisplayApi, postPinApi, setPopup]);
 

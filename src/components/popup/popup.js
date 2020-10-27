@@ -8,7 +8,9 @@ const useStyles = makeStyles((theme) => ({
   popup: {
     zIndex: 10000,
     position: 'absolute',
-    width: '300px',
+    top: theme.spacing(2),
+    left: theme.spacing(2),
+    width: '400px',
     height: '60vh'
   }
 }));
