@@ -1,14 +1,14 @@
+import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import { GlobalDataContext } from '../../modules/shared/app/globalDataProvider';
 
-const Popup = ({ feature }) => {
-  const { id, name, description } = feature.properties;
+const useStyles = makeStyles((theme) => ({}));
 
-  return (
-    <div id={`popup-${id}`}>
-      <h3>{name}</h3>
-      {description}
-    </div>
-  );
+const Popup = (props) => {
+  const {} = props;
+  const { popup, setPopup } = React.useContext(GlobalDataContext);
+
+  return <Typography>Popup</Typography>;
 };
 
 export default Popup;

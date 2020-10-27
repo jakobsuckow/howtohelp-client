@@ -6,6 +6,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Popup from '../popup/popup';
 import useApi from '../../modules/shared/app/useApi';
 import { AlertContext } from '../alert/alertProvider';
+import { GlobalDataContext } from '../../modules/shared/app/globalDataProvider';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiamFrb2JzdWNrb3ciLCJhIjoiY2s4M2pmeHo3MGI5bzNtbzVma2w3YTdkOCJ9.SoffMUvqxv6PTh5TYq20kA';
@@ -28,12 +29,12 @@ const Map = (props) => {
   const { center } = props;
   const classes = useStyles();
   const mapboxElRef = useRef(null);
-  const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }));
 
   const [getPinsByDisplayApi] = useApi('getPinsByDisplay');
   const [postPinApi] = useApi('postPin');
 
   const { showAlert } = React.useContext(AlertContext);
+  const { popup, setPopup } = React.useContext(GlobalDataContext);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -105,13 +106,9 @@ const Map = (props) => {
 
     map.on('click', 'random-points-layer', (e) => {
       if (e.features.length) {
-        const feature = e.features[0];
-        const popupNode = document.createElement('div');
-        ReactDOM.render(<Popup feature={feature} />, popupNode);
-        popUpRef.current
-          .setLngLat(feature.geometry.coordinates)
-          .setDOMContent(popupNode)
-          .addTo(map);
+        setPopup({
+          open: true
+        });
       }
     });
     return () => map.remove();
