@@ -1,9 +1,7 @@
 import React, { useRef, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import { makeStyles } from '@material-ui/core/styles';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Popup from '../popup/popup';
 import useApi from '../../modules/shared/app/useApi';
 import { AlertContext } from '../alert/alertProvider';
 import { GlobalDataContext } from '../../modules/shared/app/globalDataProvider';
@@ -34,7 +32,7 @@ const Map = (props) => {
   const [postPinApi] = useApi('postPin');
 
   const { showAlert } = React.useContext(AlertContext);
-  const { popup, setPopup } = React.useContext(GlobalDataContext);
+  const { setPopup } = React.useContext(GlobalDataContext);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -77,6 +75,7 @@ const Map = (props) => {
         latitudeEnd,
         longitudeEnd
       }).then((res) => {
+        console.log(res);
         addToLayer('random-points-data', res.data);
       });
     });
@@ -95,14 +94,15 @@ const Map = (props) => {
       }, [500]);
     });
 
-    map.on('click', (e) => {
-      const [longitude, latitude] = e.lngLat.toArray();
-      postPinApi({ latitude, longitude }).then(() => {
-        showAlert({
-          message: 'New Pin created'
-        });
-      });
-    });
+    // map.on('click', (e) => {
+    //   const [longitude, latitude] = e.lngLat.toArray();
+    //   postPinApi({ latitude, longitude }).then((res) => {
+    //     console.log(res);
+    //     showAlert({
+    //       message: 'New Pin created'
+    //     });
+    //   });
+    // });
 
     map.on('click', 'random-points-layer', (e) => {
       if (e.features.length) {
@@ -112,7 +112,7 @@ const Map = (props) => {
       }
     });
     return () => map.remove();
-  }, [center, showAlert, getPinsByDisplayApi, postPinApi]);
+  }, [center, showAlert, getPinsByDisplayApi, postPinApi, setPopup]);
 
   return (
     <div className="App">
