@@ -100,14 +100,14 @@ const Map = (props) => {
       }, [500]);
     });
 
-    // map.on('click', (e) => {
-    //   const [longitude, latitude] = e.lngLat.toArray();
-    //   postPinApi({ latitude, longitude }).then((res) => {
-    //     showAlert({
-    //       message: 'New Pin created'
-    //     });
-    //   });
-    // });
+    map.on('click', (e) => {
+      const [longitude, latitude] = e.lngLat.toArray();
+      postPinApi({ latitude, longitude }).then((res) => {
+        showAlert({
+          message: 'New Pin created'
+        });
+      });
+    });
 
     map.on('click', 'random-points-layer', (e) => {
       if (e.features.length) {
