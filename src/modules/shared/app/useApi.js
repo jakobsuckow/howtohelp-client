@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { AlertContext } from '../../../components/alert/alertProvider';
 
-const apiURI = `http://localhost:5000/api/v1`;
+const apiURI = `https://cors-anywhere.herokuapp.com/http://159.65.122.42:5000/api/v1`;
 //https://cors-anywhere.herokuapp.com/http://159.65.122.42:5000/api/v1
 
 const Api = {
