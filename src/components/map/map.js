@@ -110,10 +110,10 @@ const Map = (props) => {
     // });
 
     map.on('click', 'random-points-layer', (e) => {
-      // Todo add popup Id
       if (e.features.length) {
         setPopup({
-          open: true
+          open: true,
+          id: e.features[0].properties.id
         });
       }
     });

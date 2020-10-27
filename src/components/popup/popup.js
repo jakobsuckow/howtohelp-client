@@ -1,8 +1,9 @@
-import { Box, Button, Container, Fade, makeStyles, Paper } from '@material-ui/core';
+import { Box, Button, Container, Fade, makeStyles, Paper, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { Skeleton } from '@material-ui/lab';
 import React from 'react';
 import { GlobalDataContext } from '../../modules/shared/app/globalDataProvider';
+import useApi from '../../modules/shared/app/useApi';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,15 @@ const useStyles = makeStyles((theme) => ({
 const Popup = () => {
   const { popup, setPopup } = React.useContext(GlobalDataContext);
   const classes = useStyles();
+
+  const [getProperties] = useApi('getPropertiesById');
+
+  React.useEffect(() => {
+    getProperties(popup.id).then((res) => {
+      console.log(res.data);
+    });
+  }, [getProperties, popup.id]);
+
   return (
     <div className={classes.root}>
       <Fade in={popup.open} direction="right" mountOnEnter unmountOnExit>
@@ -43,6 +53,7 @@ const Popup = () => {
                 Close
               </Button>
             </Box>
+            <Typography variant="body">{popup.id}</Typography>
             <Skeleton />
             <Skeleton />
             <Skeleton />
