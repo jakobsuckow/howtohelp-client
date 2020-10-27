@@ -103,7 +103,6 @@ const Map = (props) => {
     // map.on('click', (e) => {
     //   const [longitude, latitude] = e.lngLat.toArray();
     //   postPinApi({ latitude, longitude }).then((res) => {
-    //     console.log(res);
     //     showAlert({
     //       message: 'New Pin created'
     //     });
@@ -111,6 +110,7 @@ const Map = (props) => {
     // });
 
     map.on('click', 'random-points-layer', (e) => {
+      // Todo add popup Id
       if (e.features.length) {
         setPopup({
           open: true
