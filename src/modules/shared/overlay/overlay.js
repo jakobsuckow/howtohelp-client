@@ -1,29 +1,20 @@
-import {
-  Box,
-  Button,
-  Container,
-  makeStyles,
-  Paper,
-  Slide,
-  Typography,
-} from "@material-ui/core"
-import CloseIcon from "@material-ui/icons/Close"
-import React from "react"
-import AddHelp from "../../add-help/addHelp"
-import { GlobalDataContext } from "../app/globalDataProvider"
+import { Box, Button, Container, makeStyles, Paper, Slide, Typography } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import React from 'react';
+import Registration from '../../registration/registration';
+import { GlobalDataContext } from '../app/globalDataProvider';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     zIndex: 10000,
-    position: "absolute",
-    height: "100vh",
-    width: "100vw",
-    boxShadow: "none",
-  },
-}))
+    position: 'absolute',
+    height: '100vh',
+    width: '100vw'
+  }
+}));
 const Overlay = () => {
-  const { modal, setModal } = React.useContext(GlobalDataContext)
-  const classes = useStyles()
+  const { modal, setModal } = React.useContext(GlobalDataContext);
+  const classes = useStyles();
   return (
     <Slide
       direction="up"
@@ -39,7 +30,7 @@ const Overlay = () => {
               variant="outlined"
               onClick={() =>
                 setModal({
-                  open: false,
+                  open: false
                 })
               }
               startIcon={<CloseIcon />}
@@ -54,7 +45,7 @@ const Overlay = () => {
         </Container>
       </Paper>
     </Slide>
-  )
-}
+  );
+};
 
-export default Overlay
+export default Overlay;
