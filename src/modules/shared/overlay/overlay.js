@@ -1,8 +1,8 @@
 import { Box, Button, Container, makeStyles, Paper, Slide, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
-import Registration from '../../registration/registration';
 import { GlobalDataContext } from '../app/globalDataProvider';
+import AddHelp from '../../add-help/addHelp';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,10 +38,8 @@ const Overlay = () => {
               Close
             </Button>
           </Box>
-          {modal.message === "providehelp" && <AddHelp />}
-          {modal.message === "gethelp" && (
-            <Typography variant="h2">Get Help</Typography>
-          )}
+          {modal.message === 'providehelp' && <AddHelp />}
+          {modal.message === 'gethelp' && <Typography variant="h2">Get Help</Typography>}
         </Container>
       </Paper>
     </Slide>
