@@ -14,7 +14,12 @@ const PersonalInfo = (props) => {
     <div>
       <Typography>Country</Typography>
       <Grid item xs={12} sm={6}>
-        <FormSelect options={options} name="country" required placeholder="hi" />
+        <FormSelect
+          options={options}
+          name="country"
+          required={true}
+          placeholder="Type in your Country"
+        />
         <Button onClick={onSubmit}>Submit</Button>
       </Grid>
     </div>

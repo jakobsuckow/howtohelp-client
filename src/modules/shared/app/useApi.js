@@ -64,7 +64,7 @@ export default (name) => {
       return Api[name](params).then((res) => {
         if (res.status === 404) {
           showAlert({ message: 'Network Error' });
-          console.log(res);
+          return;
         }
         if (res.status === 500) {
           showAlert({ message: 'Error in useApi' });
