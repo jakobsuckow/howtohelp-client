@@ -1,6 +1,7 @@
 import { Box, Button, Container, makeStyles, Paper, Slide, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
+import TypeForm from '../../../components/typeform/typeform';
 import Registration from '../../registration/registration';
 import { GlobalDataContext } from '../app/globalDataProvider';
 
@@ -39,7 +40,7 @@ const Overlay = () => {
             </Button>
           </Box>
           {modal.message === 'providehelp' && <Registration />}
-          {modal.message === 'gethelp' && <Typography>Get Help</Typography>}
+          {modal.message === 'gethelp' && <TypeForm url="https://form.typeform.com/to/iZH3YFSt" />}
         </Container>
       </Paper>
     </Slide>
