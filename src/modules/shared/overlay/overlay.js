@@ -1,11 +1,11 @@
-import { Box, Button, Container, makeStyles, Paper, Slide, Typography } from '@material-ui/core';
+import { Box, Button, Container, makeStyles, Paper, Slide } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
 import TypeForm from '../../../components/typeform/typeform';
 import Registration from '../../registration/registration';
 import { GlobalDataContext } from '../app/globalDataProvider';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
     zIndex: 10000,
     position: 'absolute',
