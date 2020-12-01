@@ -3,23 +3,39 @@ import createSpacing from '@material-ui/core/styles/createSpacing';
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 export const colors = {
-  white: `#ffffff`,
-  primaryDarkBlue: '#05065C',
-  primaryDark: '#000',
-  primaryGrey: '#E1E1E1',
-  secondaryGrey: 'B2B2B2'
+  neutralsWhite: `#ffffff`,
+  neutralsBlack: `#000000`,
+  primaryMain: '#05065C',
+  primaryLight: '#412e8a',
+  primaryDark: '#000033',
+  secondaryMain: '#E61F48',
+  secondaryLight: '#ff6073',
+  seconaryDark: '#ac0021',
+  neutralsGrey: '#E1E1E1',
+  neutralsDarkGrey: '#B2B2B2'
 };
 
 const breakpoints = createBreakpoints({});
+
 const spacing = createSpacing();
+
 const theme = createMuiTheme({
   palette: {
     common: colors,
     primary: {
-      main: colors.primaryDarkBlue
+      light: colors.primaryLight,
+      main: colors.primaryMain,
+      dark: colors.primaryDark,
+      contrastText: colors.neutralsWhite
+    },
+    secondary: {
+      light: colors.secondaryLight,
+      main: colors.secondaryMain,
+      dark: colors.seconaryDark,
+      contrastText: colors.neutralsWhite
     },
     unChecked: {
-      main: colors.secondaryGrey
+      main: colors.neutralsDarkGrey
     }
   },
   typography: {
