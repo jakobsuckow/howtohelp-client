@@ -1,59 +1,68 @@
-import { makeStyles, Typography } from "@material-ui/core"
-import React from "react"
-import { useFormContext } from "react-hook-form"
+import { makeStyles, Typography } from '@material-ui/core';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+import { colors } from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  input: ({ disabled }) => ({
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "16px",
+  input: ({ disabled, lg }) => ({
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '16px'
     },
     flex: 1,
-    minWidth: "320px",
+    minWidth: '320px',
     padding: theme.spacing(2),
     paddingTop: theme.spacing(1.5),
     paddingBottom: theme.spacing(1.5),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       paddingTop: theme.spacing(2),
+      ...(lg && {
+        minWidth: '710px',
+        marginTop: theme.spacing(20),
+        marginBottom: theme.spacing(4)
+      })
     },
-    "&:focus": {
-      borderBottom: `1px solid #000`,
+    '&:focus': {
+      borderColor: theme.palette.primary.main
     },
     borderRadius: 0,
-    border: "none",
-    borderBottom: `1px solid #B2B2B2`,
-    outline: "none",
-    backgroundColor: "transparent",
+    border: 'none',
+    borderBottom: `1px solid ${colors.neutralsDarkGrey}`,
+    ...(lg && {
+      borderBottom: `2px solid ${colors.neutralsDarkGrey}`
+    }),
+    outline: 'none',
+    backgroundColor: 'transparent',
     color: theme.palette.common.black,
-    "&::placeholder": {
-      color: theme.palette.common.secondaryGrey,
+    '&::placeholder': {
+      color: theme.palette.common.secondaryGrey
     },
     ...(disabled && {
-      pointerEvents: "none",
-      color: theme.palette.common.black,
-    }),
+      pointerEvents: 'none',
+      color: theme.palette.common.black
+    })
   }),
   label: ({ disabled }) => ({
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
     ...(disabled && {
-      color: theme.palette.common.black,
-    }),
+      color: theme.palette.common.black
+    })
   }),
   optionalLabel: ({ disabled }) => ({
-    textTransform: "none",
+    textTransform: 'none',
     ...(disabled && {
-      color: theme.palette.common.black,
-    }),
+      color: theme.palette.common.black
+    })
   }),
   error: {
-    marginTop: theme.spacing(0.5),
-  },
-}))
+    marginTop: theme.spacing(0.5)
+  }
+}));
 
 const FormInput = (props) => {
-  const { name, label, id, placeholder } = props
-  const classes = useStyles()
-  const { register, errors } = useFormContext()
+  const { name, label, id, placeholder, lg } = props;
+  const classes = useStyles({ lg });
+  const { register, errors } = useFormContext();
 
   return (
     <div className={classes.root}>
@@ -74,17 +83,12 @@ const FormInput = (props) => {
         />
       </div>
       {errors && (
-        <Typography
-          component="p"
-          variant="body2"
-          color="error"
-          className={classes.error}
-        >
+        <Typography component="p" variant="body2" color="error" className={classes.error}>
           {errors.message}
         </Typography>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default FormInput
+export default FormInput;

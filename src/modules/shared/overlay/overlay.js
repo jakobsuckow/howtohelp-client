@@ -2,7 +2,7 @@ import { Box, Button, Container, makeStyles, Paper, Slide } from '@material-ui/c
 import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
 import TypeForm from '../../../components/typeform/typeform';
-import Registration from '../../registration/registration';
+import FormStepper from '../../add-help/formStepper';
 import { GlobalDataContext } from '../app/globalDataProvider';
 
 const useStyles = makeStyles(() => ({
@@ -39,7 +39,7 @@ const Overlay = () => {
               Close
             </Button>
           </Box>
-          {modal.message === 'providehelp' && <Registration />}
+          {modal.message === 'providehelp' && <FormStepper />}
           {modal.message === 'gethelp' && <TypeForm url="https://form.typeform.com/to/iZH3YFSt" />}
         </Container>
       </Paper>
