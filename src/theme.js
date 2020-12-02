@@ -139,7 +139,7 @@ const theme = createMuiTheme({
         }
       },
       outlined: {
-        backgroundColor: colors.primaryGrey,
+        backgroundColor: colors.neutralsGrey,
         border: 'none'
       },
       contained: {
@@ -148,7 +148,7 @@ const theme = createMuiTheme({
     },
     MuiFab: {
       primary: {
-        backgroundColor: colors.primaryDarkBlue
+        backgroundColor: colors.primaryMain
       }
     },
     MuiSpeedDialAction: {
