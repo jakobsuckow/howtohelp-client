@@ -131,8 +131,9 @@ const theme = createMuiTheme({
       root: {
         lineHeight: 1,
         textTransform: 'none',
-        paddingTop: spacing(),
-        paddingBottom: spacing(),
+        paddingTop: spacing(1),
+        paddingBottom: spacing(1),
+        marginLeft: spacing(1),
         fontSize: 16,
         [breakpoints.up('sm')]: {
           fontSize: 18

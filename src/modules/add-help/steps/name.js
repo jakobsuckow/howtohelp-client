@@ -1,12 +1,16 @@
-import { Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import React from 'react';
 import FormInput from '../../../components/form/formInput';
 
-const Contact = (props) => {
+const Name = (props) => {
   const { onPrevClick, onNextClick } = props;
   return (
     <>
-      <FormInput name="contact" lg placeholder="Whats your email address" />
+      <Box mb={2} mt={2}>
+        <Typography variant="h2">Lets start, what is your name ?</Typography>
+        <Typography variant="body1"></Typography>
+      </Box>
+      <FormInput name="name" lg placeholder="Enter your first Name" required autoFocus />
       <Button onClick={onPrevClick} variant="contained" color="primary">
         Previous
       </Button>
@@ -17,4 +21,4 @@ const Contact = (props) => {
   );
 };
 
-export default Contact;
+export default Name;

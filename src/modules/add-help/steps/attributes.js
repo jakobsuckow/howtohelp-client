@@ -18,7 +18,7 @@ import { AlertContext } from '../../../components/alert/alertProvider';
 import FormInput from '../../../components/form/formInput';
 
 const Attributes = (props) => {
-  const { onNextClick, handleSubmit } = props;
+  const { onNextClick, handleSubmit, nextStep } = props;
   const { showAlert } = React.useContext(AlertContext);
 
   const onSubmit = (data) => {
@@ -29,7 +29,7 @@ const Attributes = (props) => {
         severity: 'info'
       });
     } else {
-      onNextClick();
+      nextStep('attributes', 'name');
     }
   };
 

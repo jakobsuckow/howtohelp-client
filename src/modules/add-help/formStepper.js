@@ -3,7 +3,8 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import Address from './steps/address';
 import Attributes from './steps/attributes';
-import Contact from './steps/contact';
+import Name from './steps/name';
+import Email from './steps/email';
 import Consent from './steps/consent';
 
 const useStyles = makeStyles(() => ({
@@ -14,39 +15,77 @@ const FormStepper = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState('attributes');
 
+  const [userInput, setUserInput] = React.useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      atributes: {},
+      name: '',
+      email: '',
+      address: ''
+    }
+  );
+
   const methods = useForm({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
-    submitFocusError: false
+    submitFocusError: true
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, getValues, trigger } = methods;
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = () => {
+    console.log(userInput);
   };
+
+  const nextStep = React.useCallback(
+    (name, next) => {
+      const validate = trigger(name);
+
+      const value = getValues(name);
+      console.log(value);
+
+      setUserInput({ [name]: value });
+
+      setActiveStep(next);
+    },
+    [getValues, setActiveStep, trigger]
+  );
+
   return (
     <div className={classes.root}>
       <FormProvider {...methods}>
-        <Box component="form">
+        <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           {activeStep === 'attributes' && (
-            <Attributes onNextClick={() => setActiveStep('address')} handleSubmit={handleSubmit} />
-          )}
-          {activeStep === 'address' && (
-            <Address
-              onNextClick={() => setActiveStep('contact')}
-              onPrevClick={() => setActiveStep('attributes')}
+            <Attributes
+              onNextClick={() => nextStep('attributes', 'name')}
+              nextStep={nextStep}
+              handleSubmit={handleSubmit}
             />
           )}
-          {activeStep === 'contact' && (
-            <Contact
-              onPrevClick={() => setActiveStep('address')}
-              onNextClick={() => setActiveStep('consent')}
+
+          {activeStep === 'name' && (
+            <Name
+              onPrevClick={() => setActiveStep('attributes')}
+              onNextClick={() => nextStep('name', 'email')}
+            />
+          )}
+
+          {activeStep === 'email' && (
+            <Email
+              onPrevClick={() => setActiveStep('name')}
+              onNextClick={() => nextStep('email', 'address')}
+            />
+          )}
+
+          {activeStep === 'address' && (
+            <Address
+              onPrevClick={() => setActiveStep('email')}
+              onNextClick={() => nextStep('address', 'consent')}
             />
           )}
           {activeStep === 'consent' && (
             <Consent
-              onPrevClick={() => setActiveStep('contact')}
+              onPrevClick={() => setActiveStep('address')}
               onFinishClick={handleSubmit(onSubmit)}
             />
           )}

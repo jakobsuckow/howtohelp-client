@@ -1,18 +1,21 @@
-import { Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import React from 'react';
-import FormInput from '../../../components/form/formInput';
 
 const Consent = (props) => {
-  const { onPrevClick, onFinishClick } = props;
-
+  const { onFinishClick, onPrevClick } = props;
   return (
     <>
-      <FormInput name="contact" lg placeholder="Whats your email address" />
-      <Button onClick={onPrevClick} variant="contained" color="primary">
-        Previous
+      <Box mb={2} mt={2}>
+        <Typography variant="h1">Last Step</Typography>
+        <Typography variant="body1">
+          by clicking send data you are agreeing to our services
+        </Typography>
+      </Box>
+      <Button variant="contained" onClick={onPrevClick} color="prmary">
+        Back
       </Button>
-      <Button onClick={onFinishClick} variant="contained" color="primary">
-        Finish
+      <Button variant="contained" onClick={onFinishClick} color="primary">
+        Submit
       </Button>
     </>
   );

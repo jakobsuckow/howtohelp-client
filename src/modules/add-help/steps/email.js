@@ -2,25 +2,24 @@ import { Box, Button, Typography } from '@material-ui/core';
 import React from 'react';
 import FormInput from '../../../components/form/formInput';
 
-const Address = (props) => {
+const Email = (props) => {
   const { onPrevClick, onNextClick } = props;
+
   return (
     <>
       <Box mb={2} mt={2}>
-        <Typography variant="h2">Last step: Where do you live ? </Typography>
-        <Typography variant="body1">
-          We will never show your exact location, but rather your approximate district
-        </Typography>
+        <Typography variant="h2">How can we reach you ?</Typography>
+        <Typography variant="body1">Your email address will never be made public</Typography>
       </Box>
-      <FormInput name="address" lg placeholder="Type in your address" required autoFocus />
+      <FormInput name="email" lg placeholder="Whats your email address" required autoFocus />
       <Button onClick={onPrevClick} variant="contained" color="primary">
         Previous
       </Button>
       <Button onClick={onNextClick} variant="contained" color="primary">
-        Send
+        Next
       </Button>
     </>
   );
 };
 
-export default Address;
+export default Email;

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from '../../home/home';
 import Playground from '../../playground/playground';
 import LocationTracker from '../../../analytics/locationTracker';
+import FormStepper from '../../add-help/formStepper';
 
 const AppRouter = () => (
   <Router>
@@ -19,8 +20,9 @@ const AppRouter = () => (
           );
         }}
       />
-      <Route path="/registration" exact component={Registration} />
       <Route path="/playground" exact component={Playground} />
+      <Route path="/form" exact component={FormStepper} />
+
       <Redirect to="/" />
     </Switch>
   </Router>

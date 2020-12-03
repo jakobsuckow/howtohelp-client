@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FormInput = (props) => {
-  const { name, label, id, placeholder, lg } = props;
+  const { name, label, id, placeholder, lg, required, autoFocus } = props;
   const classes = useStyles({ lg });
   const { register, errors } = useFormContext();
 
@@ -75,8 +75,11 @@ const FormInput = (props) => {
         <Typography
           component="input"
           variant="body1"
+          autoFocus={autoFocus}
           name={name}
-          ref={register}
+          ref={register({
+            required: required
+          })}
           id={id}
           className={classes.input}
           placeholder={placeholder}
