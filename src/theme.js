@@ -157,7 +157,7 @@ const theme = createMuiTheme({
         fontSize: 16,
         whiteSpace: 'nowrap',
         color: colors.primaryDark,
-        backgroundColor: colors.white,
+        backgroundColor: colors.neutralsWhite,
         boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)'
       }
     },

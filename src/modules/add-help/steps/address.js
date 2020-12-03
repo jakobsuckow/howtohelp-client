@@ -17,7 +17,7 @@ const Address = (props) => {
         Previous
       </Button>
       <Button onClick={onNextClick} variant="contained" color="primary">
-        Send
+        Next
       </Button>
     </>
   );

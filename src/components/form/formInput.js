@@ -63,7 +63,6 @@ const FormInput = (props) => {
   const { name, label, id, placeholder, lg, required, autoFocus } = props;
   const classes = useStyles({ lg });
   const { register, errors } = useFormContext();
-
   return (
     <div className={classes.root}>
       {label && (
@@ -78,7 +77,7 @@ const FormInput = (props) => {
           autoFocus={autoFocus}
           name={name}
           ref={register({
-            required: required
+            required: required && 'Required'
           })}
           id={id}
           className={classes.input}
@@ -87,7 +86,7 @@ const FormInput = (props) => {
       </div>
       {errors && (
         <Typography component="p" variant="body2" color="error" className={classes.error}>
-          {errors.message}
+          {errors[name]?.message}
         </Typography>
       )}
     </div>

@@ -6,6 +6,7 @@ import Attributes from './steps/attributes';
 import Name from './steps/name';
 import Email from './steps/email';
 import Consent from './steps/consent';
+import { AlertContext } from '../../components/alert/alertProvider';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
 const FormStepper = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState('attributes');
-
+  const { showAlert } = React.useContext(AlertContext);
   const [userInput, setUserInput] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -39,16 +40,20 @@ const FormStepper = () => {
 
   const nextStep = React.useCallback(
     (name, next) => {
-      const validate = trigger(name);
-
-      const value = getValues(name);
-      console.log(value);
-
-      setUserInput({ [name]: value });
-
-      setActiveStep(next);
+      trigger(name).then((res) => {
+        if (res === false) {
+          showAlert({
+            message: 'This field is mandatory',
+            severity: 'info'
+          });
+        } else {
+          const value = getValues(name);
+          setUserInput({ [name]: value });
+          setActiveStep(next);
+        }
+      });
     },
-    [getValues, setActiveStep, trigger]
+    [getValues, setActiveStep, trigger, showAlert]
   );
 
   return (
@@ -57,7 +62,7 @@ const FormStepper = () => {
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           {activeStep === 'attributes' && (
             <Attributes
-              onNextClick={() => nextStep('attributes', 'name')}
+              onNextClick={() => setActiveStep('name')}
               nextStep={nextStep}
               handleSubmit={handleSubmit}
             />
