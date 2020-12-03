@@ -29,13 +29,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Popup = () => {
   const { popup, setPopup } = React.useContext(GlobalDataContext);
+  const [loading, setLoading] = React.useState(true);
+  const [properties, setProperties] = React.useState({});
   const classes = useStyles();
 
   const [getProperties] = useApi('getPropertiesById');
 
   React.useEffect(() => {
+    setLoading(true);
     getProperties(popup.id).then((res) => {
-      console.log(res.data);
+      setProperties(res.data);
     });
   }, [getProperties, popup.id]);
 
@@ -46,17 +49,14 @@ const Popup = () => {
           <Container>
             <Box mt={2}>
               <Button
-                variant="outlined"
+                variant="contained"
                 onClick={() => setPopup({ open: false })}
                 startIcon={<CloseIcon />}
-              >
-                Close
-              </Button>
+              ></Button>
             </Box>
-            <Typography variant="body">{popup.id}</Typography>
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
+            <Typography variant="h1">{loading ? <Skeleton /> : properties.name}</Typography>
+            <Typography variant="body1">{loading ? <Skeleton /> : properties.address}</Typography>
+            <Typography variant="h1">{properties.address}</Typography>
           </Container>
         </Paper>
       </Fade>

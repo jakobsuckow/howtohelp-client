@@ -55,14 +55,49 @@ const useStyles = makeStyles((theme) => ({
     })
   }),
   error: {
-    marginTop: theme.spacing(0.5)
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(0.5)
   }
 }));
 
 const FormInput = (props) => {
-  const { name, label, id, placeholder, lg, required, autoFocus } = props;
-  const classes = useStyles({ lg });
+  const {
+    name,
+    label,
+    id,
+    placeholder,
+    lg,
+    required,
+    autoFocus,
+    type,
+    minLength,
+    validate,
+    pressEnter
+  } = props;
+
   const { register, errors } = useFormContext();
+  const classes = useStyles({ lg, errors });
+
+  const generateValidators = React.useCallback(() => {
+    const validators = {};
+    if (required) {
+      validators.required = 'This field is mandatory';
+    }
+    if (type === 'email') {
+      validators.pattern = {
+        value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+        message: 'Please enter valid email'
+      };
+    }
+    if (minLength) {
+      validators.minLength = minLength;
+    }
+    if (validate) {
+      validators.validate = validate;
+    }
+    return validators;
+  }, [required, type, minLength, validate]);
+
   return (
     <div className={classes.root}>
       {label && (
@@ -74,18 +109,18 @@ const FormInput = (props) => {
         <Typography
           component="input"
           variant="body1"
+          type={type}
           autoFocus={autoFocus}
           name={name}
-          ref={register({
-            required: required && 'Required'
-          })}
+          ref={register(generateValidators())}
           id={id}
           className={classes.input}
           placeholder={placeholder}
+          onKeyDown={pressEnter}
         />
       </div>
       {errors && (
-        <Typography component="p" variant="body2" color="error" className={classes.error}>
+        <Typography component="p" variant="body1" color="error" className={classes.error}>
           {errors[name]?.message}
         </Typography>
       )}

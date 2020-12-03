@@ -35,7 +35,7 @@ const Attributes = (props) => {
 
   return (
     <>
-      <Box mb={2} mt={2}>
+      <Box mb={2}>
         <Typography variant="h2">What can you help with ?</Typography>
       </Box>
       <Box mb={4} mt={4}>

@@ -1,4 +1,4 @@
-import { Box, makeStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import Address from './steps/address';
@@ -7,15 +7,17 @@ import Name from './steps/name';
 import Email from './steps/email';
 import Consent from './steps/consent';
 import { AlertContext } from '../../components/alert/alertProvider';
-
-const useStyles = makeStyles(() => ({
-  root: {}
-}));
+import useApi from '../shared/app/useApi';
+import { GlobalDataContext } from '../shared/app/globalDataProvider';
 
 const FormStepper = () => {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState('attributes');
+
   const { showAlert } = React.useContext(AlertContext);
+  const { setModal } = React.useContext(GlobalDataContext);
+
+  const [postProv] = useApi('postProvideHelp');
+
   const [userInput, setUserInput] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -35,7 +37,16 @@ const FormStepper = () => {
   const { handleSubmit, getValues, trigger } = methods;
 
   const onSubmit = () => {
-    console.log(userInput);
+    postProv(userInput).then((res) => {
+      setTimeout(() => {
+        showAlert({
+          message: 'Thanks for your submission'
+        });
+        setModal({
+          open: false
+        });
+      }, [400]);
+    });
   };
 
   const nextStep = React.useCallback(
@@ -57,9 +68,9 @@ const FormStepper = () => {
   );
 
   return (
-    <div className={classes.root}>
+    <Box mt={8}>
       <FormProvider {...methods}>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
           {activeStep === 'attributes' && (
             <Attributes
               onNextClick={() => setActiveStep('name')}
@@ -96,7 +107,7 @@ const FormStepper = () => {
           )}
         </Box>
       </FormProvider>
-    </div>
+    </Box>
   );
 };
 

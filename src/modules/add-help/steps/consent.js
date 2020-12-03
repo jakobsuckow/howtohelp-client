@@ -5,13 +5,14 @@ const Consent = (props) => {
   const { onFinishClick, onPrevClick } = props;
   return (
     <>
-      <Box mb={2} mt={2}>
+      <Box mb={8}>
         <Typography variant="h1">Last Step</Typography>
         <Typography variant="body1">
-          by clicking send data you are agreeing to our services
+          After you submit your data, we will screen your application and get back to you. By
+          clicking send data you are agreeing to our services.
         </Typography>
       </Box>
-      <Button variant="contained" onClick={onPrevClick} color="prmary">
+      <Button variant="contained" onClick={onPrevClick} color="primary">
         Back
       </Button>
       <Button variant="contained" onClick={onFinishClick} color="primary">

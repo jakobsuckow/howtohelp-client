@@ -54,6 +54,20 @@ const Api = {
         longitude
       }
     });
+  },
+  postProvideHelp: ({ attributes, name, email, address }) => {
+    return axios(`${apiURI}/pin/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: {
+        attributes,
+        name,
+        email,
+        address
+      }
+    });
   }
 };
 
