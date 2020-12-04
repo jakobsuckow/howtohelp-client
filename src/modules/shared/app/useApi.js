@@ -2,15 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import { AlertContext } from '../../../components/alert/alertProvider';
 
-const apiURI = `https://cors-anywhere.herokuapp.com/http://159.65.122.42:5000/api/v1`;
+const apiURI = `http://159.65.122.42/api/v1`;
 //https://cors-anywhere.herokuapp.com/http://159.65.122.42:5000/api/v1
+
+const accessToken = 'test';
 
 const Api = {
   getPins: () => {
     return axios(`${apiURI}/pin/all`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + accessToken
       }
     });
   },
@@ -18,7 +21,8 @@ const Api = {
     return axios(`${apiURI}/pin/all`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + accessToken
       },
       params: { latitude, longitude, latitudeEnd, longitudeEnd }
     });
@@ -27,7 +31,8 @@ const Api = {
     return axios(`${apiURI}/pin/all`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + accessToken
       },
       params: {
         latitude,
@@ -47,7 +52,8 @@ const Api = {
     return axios(`${apiURI}/pin`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + accessToken
       },
       data: {
         latitude,
@@ -59,7 +65,8 @@ const Api = {
     return axios(`${apiURI}/pin/`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + accessToken
       },
       data: {
         attributes,
