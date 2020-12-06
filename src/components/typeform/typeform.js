@@ -32,7 +32,7 @@ const TypeForm = () => {
 
   React.useEffect(() => {
     if (ref.current) {
-      typeformEmbed.makeWidget(ref.current, 'https://form.typeform.com/to/iZH3YFSt', {
+      typeformEmbed.makeWidget(ref.current, process.env.REACT_APP_TYPEFORM_LINK, {
         onReady: () => {
           console.log(`Typeform ready`);
         },

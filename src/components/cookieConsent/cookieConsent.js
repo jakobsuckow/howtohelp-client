@@ -24,7 +24,6 @@ const CookieConsent = () => {
 
   React.useEffect(() => {
     if (cookieOptions === undefined) {
-      console.log(`Cookies are undefined`);
       setIsOpen(true);
     }
   }, [cookieOptions]);

@@ -8,12 +8,10 @@ import CookieConsent from './components/cookieConsent/cookieConsent';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
     <CookieConsent />
-    <ThemeProvider theme={theme}>
-      <Root />
-      <CssBaseline />
-    </ThemeProvider>
-  </React.StrictMode>,
+    <Root />
+    <CssBaseline />
+  </ThemeProvider>,
   rootElement
 );

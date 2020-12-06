@@ -174,7 +174,7 @@ const theme = createMuiTheme({
         borderRadius: spacing(4)
       },
       message: {
-        color: colors.white
+        color: colors.neutralsWhite
       }
     },
     MuiSnackbar: {

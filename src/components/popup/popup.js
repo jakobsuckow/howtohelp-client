@@ -39,6 +39,7 @@ const Popup = () => {
     setLoading(true);
     getProperties(popup.id).then((res) => {
       setProperties(res.data);
+      setLoading(false);
     });
   }, [getProperties, popup.id]);
 
@@ -54,9 +55,7 @@ const Popup = () => {
                 startIcon={<CloseIcon />}
               ></Button>
             </Box>
-            <Typography variant="h1">{loading ? <Skeleton /> : properties.name}</Typography>
-            <Typography variant="body1">{loading ? <Skeleton /> : properties.address}</Typography>
-            <Typography variant="h1">{properties.address}</Typography>
+            <Typography variant="h2">{loading ? <Skeleton /> : properties.name}</Typography>
           </Container>
         </Paper>
       </Fade>

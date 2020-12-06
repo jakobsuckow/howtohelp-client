@@ -4,7 +4,7 @@ export const GlobalDataContext = React.createContext();
 const GlobalDataProvider = (props) => {
   const [popup, setPopup] = React.useState({
     open: false,
-    id: ''
+    id: null
   });
   const [modal, setModal] = React.useState({
     open: false,

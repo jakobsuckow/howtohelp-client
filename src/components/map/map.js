@@ -8,8 +8,7 @@ import { GlobalDataContext } from '../../modules/shared/app/globalDataProvider';
 
 import heartIcon from './assets/heart.png';
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoiamFrb2JzdWNrb3ciLCJhIjoiY2s4M2pmeHo3MGI5bzNtbzVma2w3YTdkOCJ9.SoffMUvqxv6PTh5TYq20kA';
+mapboxgl.accessToken = process.env.REACT_APP_PUBLIC_MAPGL_KEY;
 
 const useStyles = makeStyles(() => ({
   loader: {
