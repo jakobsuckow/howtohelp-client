@@ -9,6 +9,6 @@ export const segmentAnalyticsScript = `
 
 export const enableSegmentAnalytics = () => {
   if (typeof window !== 'undefined' && window.analytics && window.analytics.load) {
-    window.analytics.load(`acoY689OiKgyGn7KnrYd349B03XSPWWL`);
+    window.analytics.load(process.env.REACT_APP_PUBLIC_SEGMENT);
   }
 };

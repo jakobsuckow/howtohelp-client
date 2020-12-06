@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { AlertContext } from '../../../components/alert/alertProvider';
 
-const apiURI = `http://localhost:5000/api/v1`;
+const apiURI = process.env.REACT_APP_API_URL;
 
 const accessToken = 'test';
 
